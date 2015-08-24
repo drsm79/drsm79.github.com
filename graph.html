@@ -1,0 +1,189 @@
+<html>
+<head>
+	<link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Roboto:300,400,500,700" type="text/css">
+	<link rel="stylesheet" href="https://storage.googleapis.com/code.getmdl.io/1.0.2/material.light_blue-pink.min.css" />
+	<script src="https://storage.googleapis.com/code.getmdl.io/1.0.2/material.min.js"></script>
+	<script src="https://raw.githubusercontent.com/mckamey/countdownjs/master/countdown.min.js"></script>
+	<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+	<title>Python + Graph</title>
+	<style type="text/css">
+  .demo-card-image.mdl-card {
+    width: 330px;
+    height: 277px;
+    background: url('https://bravetheshave.org.uk/wp-content/uploads/2015/07/228926_20150730201715.png') center / cover;
+
+  }
+  .demo-card-image > .mdl-card__actions {
+    height: 52px;
+    padding: 16px;
+    background: rgba(0, 0, 0, 0.2);
+  }
+  h4.thanks {
+    color: #fff;
+    margin: 0px;
+    padding: 0px;
+    font-weight: 500;
+  }
+  body {
+  	background: url('http://subtlepatterns.com/patterns/concrete_seamless.png');
+  		/*http://subtlepatterns.com/patterns/swirl_pattern.png*/
+  }
+  .mdl-cell--4-col, .mdl-cell--8-col {
+  	background-color: white;
+  	padding: 20px;
+  }
+	</style>
+</head>
+<body>
+
+<div class="mdl-js-layout">
+	<div class="mdl-grid mdl-grid--no-spacing">
+		<div class="mdl-cell mdl-cell--2-col"></div>
+		<div class="mdl-cell mdl-cell--4-col">
+			<h1 class="mdl-typography--display-4">Graph</h1>
+		</div>
+		<div class="mdl-cell mdl-cell--4-col">
+			<h4 class="mdl-typography--headline">Visualising graphs with Python and IBM Graph Data Store</h4>
+		</div>
+	</div>
+
+	<div class="mdl-grid mdl-grid--no-spacing">
+		<div class="mdl-cell mdl-cell--2-col"></div>
+		<div class="mdl-cell mdl-cell--8-col">
+<p>I've been working on the <a href="https://console.ng.bluemix.net/catalog/graph-data-store/">IBM Graph Data Store</a> for the last few months. It's a nice place to build graph based applications, and last night I wrote a simple python app that takes a simple graph and visualises it.</p>
+
+<h2>Getting some data</h2>
+
+<p>The Graph Data Store presents a simple REST interface. The credentials json file from the Bluemix dashboard gives you your username and password, and the URL of your instance. Make a copy of that in <code>creds.json</code> in the local directory.</p>
+
+<p>A simple function that takes a credentials file and a query to run against the graph instance using <a href="http://docs.python-requests.org/">Requests</a> could look like:</p>
+
+<pre><code>def query(creds, traversal):
+    creds = json.load(open(creds))
+    url = creds['credentials']['apiURL'] + '/gremlin'
+    start = time()
+    res = requests.post(
+        url,
+        auth=(
+            creds['credentials']['username'],
+            creds['credentials']['password']
+        ),
+        data=json.dumps({"gremlin": traversal}),
+        headers={"Content-Type": "application/json"}
+    )
+    res.raise_for_status()
+    print 'query took %s seconds' % (time() - start)
+    return res.json()
+</code></pre>
+
+<p>That <code>POST's</code> the Gremlin query to the service, raises if I get a non 2xx response, times how long the query took and returns the deserialised JSON as a python dictionary.</p>
+
+<h2>The traversal</h2>
+
+<p>A query against a graph store is known as a traversal. It finds elements of the graph matching certain parameters and iterates through the nodes and edges to find things that match the query. I've found that storing the steps of the query as a list is a nice way to write the thing in python, not least because the query can get long.</p>
+
+<pre><code>traversal = ".".join([
+    "g.V()",
+    "has('name', 'International Business Machines')",
+    "out('part of')",
+    "out('works for')",
+    "path()"
+])
+</code></pre>
+
+<p>We can then run the traversal using the <code>query</code> function defined above:</p>
+
+<pre><code>data = query('creds.json', traversal)
+</code></pre>
+
+<p>This gives us back paths out from the 'International Business Machines' node, via nodes that describe different groups to find people who work in those groups.</p>
+
+<h2>The visualisation</h2>
+
+<p>To visualise the graph I picked up <a href="https://networkx.github.io/">NetworkX</a>;</p>
+
+<blockquote>
+NetworkX is a Python language software package for the
+creation, manipulation, and study of the structure, dynamics,
+and functions of complex networks.
+</blockquote>
+
+<p>It wraps <a href="http://matplotlib.org/">matplotlib</a> for visualising, but also provides some nice graph operations for analysing graphs in memory.</p>
+
+<p>First of all I create a <code>figure</code> object for matplotlib to draw on, then instantiate a Graph object to put data into.</p>
+
+<pre><code>plt.figure(figsize=(12, 8))
+G = nx.Graph()
+</code></pre>
+
+<p>Next I iterate through the result data, taking the name from each node in the path and adding it to the graph:</p>
+
+<pre><code>for path in data['result']['data']:
+    G.add_path([x['properties']['name'][0]['value'] for x in path['objects']])
+</code></pre>
+
+<p>Then pull out the layout of the nodes, draw the visualisation, save it to a png file and show it in a window.</p>
+
+<pre><code>pos = nx.spring_layout(G, k=0.5)
+nx.draw(G, pos, node_size=1600, node_color='#A0CBE2', with_labels=True)
+plt.savefig('ego_graph.png')
+plt.show()
+</code></pre>
+
+<h2>The final code</h2>
+
+<pre><code>import matplotlib.pyplot as plt
+import networkx as nx
+import requests
+import json
+from time import time
+
+
+def query(creds, traversal):
+    creds = json.load(open(creds))
+    url = creds['credentials']['apiURL'] + '/gremlin'
+    start = time()
+    res = requests.post(
+        url,
+        auth=(
+            creds['credentials']['username'],
+            creds['credentials']['password']
+        ),
+        data=json.dumps({"gremlin": traversal}),
+        headers={"Content-Type": "application/json"}
+    )
+    res.raise_for_status()
+    print 'query took %s seconds' % (time() - start)
+    return res.json()
+
+traversal = ".".join([
+    "g.V()",
+    "has('name', 'International Business Machines')",
+    "out('part of')",
+    "out('works for')",
+    "path()"
+])
+
+data = query('creds.json', traversal)
+
+plt.figure(figsize=(12, 8))
+G = nx.Graph()
+
+for path in data['result']['data']:
+    G.add_path([x['properties']['name'][0]['value'] for x in path['objects']])
+
+
+pos = nx.spring_layout(G, k=0.5)
+nx.draw(G, pos, node_size=1600, node_color='#A0CBE2', with_labels=True)
+plt.savefig('ego_graph.png')
+plt.show()
+</code></pre>
+
+<center>
+<img src="ego_graph.png" width="750"/>
+</center>
+		</div>
+	</div>
+</div>
+</body>
+</html>
