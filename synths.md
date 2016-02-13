@@ -7,7 +7,7 @@ A while back I saw a video of [Adrian Utley playing an Arturia MiniBrute][1]. Fo
 
 There are a few things that attract me to synths. I like a lot of music that is [very][2] [synth][3] [heavy][4], I enjoy making electronic music, I've been trying to use computers less in my outside of work life, and they're things you can [build yourself][5].
 
- * [Rustic synth][6] - of which I built:
+ * My modular [Rustic synth][6] - of which I built (aside from the endcheeks/rails):
    * RYO 3VCA
    * Eowave Bend
    * 4ms SCM
