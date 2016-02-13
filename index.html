@@ -1,130 +1,30 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
-   "http://www.w3.org/TR/html4/strict.dtd">
+---
+layout: default
+---
 
-<html lang="en">
-<head>
-	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-	<title>Metsonet</title>
-	<meta name="author" content="Simon Metson">
-	<!-- Date: 2011-07-07 -->
-</head>
-<style>
-body {
-  font-family: Helvetica;
-  padding: 0px;
-  margin: 0px;
-  background-color: #3c3c3c;
-	font-size: 16pt;
-}
+<div class="home">
 
-.mainnav{
-  font-size: 2em;
-  font-weight: bold;
+  <h1 class="page-heading">Posts</h1>
 
-}
+  <ul class="post-list">
+    {% for post in site.posts %}
+      <li>
+        <h2>
+          <a class="post-link" href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a>
+        </h2>
+        {{ post.excerpt }}
+        <span class="post-meta">
+          posted {{ post.date | date: "%b %-d, %Y" }}
+          {% if post.tags != empty %}
+          § tagged: {% for tag in post.tags %}
+          {{ tag }}
+          {% endfor %}
+          {% endif %}
+        </span>
+      </li>
+    {% endfor %}
+  </ul>
 
-.mainnav li{
-	list-style: none;
-	padding-top: 10px;
-	padding-bottom: 10px;
-}
+  <p class="rss-subscribe">subscribe <a href="{{ "/feed.xml" | prepend: site.baseurl }}">via RSS</a></p>
 
-.mainnav a{
-	border-left-style: solid;
-	border-width: 25px;
-	padding-left: 50px;
-	padding-right: 20px;
-	padding-top: 10px;
-	padding-bottom: 10px;
-}
-
-.secondarynav{
-  font-size: 0.75em;
-	list-style: none;
-}
-ol.secondarynav li{
-  display: inline;
-}
-
-ol.secondarynav li a{
-	color: #3D3D33;
-}
-a{
-	text-decoration: none;
-}
-a.blog:link, a.blog:active, a.blog:visited, .blog{
-	background-color: #FFF;
-	color: #D3D3D3;
-}
-
-a.blog:hover{
-	background-color: #D3D3D3;
-	color: #FFF;
-}
-
-a.twitter:link, a.twitter:active, a.twitter:visited, .twitter{
-	background-color: #FFF;
-	color: #00ADEE;
-}
-
-a.twitter:hover{
-	background-color: #00ADEE;
-	color: #FFF;
-}
-
-a.cv:link, a.cv:active, a.cv:visited, .cv{
-	background-color: #FFF;
-	color: #FF6633;
-}
-
-a.cv:hover{
-	background-color: #FF6633;
-	color: #FFF;
-}
-
-a.code:link, a.code:active, a.code:visited, .code{
-	background-color: #FFF;
-	color: #00EE00;
-}
-
-a.code:hover{
-	background-color: #00EE00;
-	color: #FFF;
-}
-</style>
-<body bgcolor="#3c3c3c">
-	<table height="100%" width="100%" bgcolor="#3c3c3c">
-		<tr>
-			<td height="100%" width="100%" align="center" valign="middle">
-				<table  bgcolor="#ffffff">
-					<tr>
-						<td align="left">
-							<ol class="mainnav">
-								<li class="blog"><a class="blog" href="http://simonmetson.posterous.com">Blog</a></li>
-								<li class="twitter"><a class="twitter" href="http://twitter.com/drsm79">Twitter</a></li>
-								<li class="cv"><a class="cv" href="cv.pdf">CV</a></li>
-								<li class="code"><a class="code" href="http://github.com/drsm79">Code</a></li>
-							</ol>
-            <center>
-							<ol class="secondarynav">
-								<li>Other things:</li>
-								<li><a href="bands.html">bands</a></li>
-								<li><a href="http://soundcloud.com/simon-metson/dropbox"><img src="soundcloud.png"height="15" border="0" alt="Send me your songs on SoundCloud"></a>
-								<li><a href="http://www.flickr.com/photos/simonroadkill/">flickr</a></li>
-								<li>
-									<a href="http://uk.linkedin.com/pub/simon-metson/1/306/b09" >
-										<img src="http://www.linkedin.com/img/webpromo/btn_profile_greytxt_80x15.png" width="80" height="15" border="0" alt="View Simon Metson's profile on LinkedIn">
-								  </a>
-								</li>
-							</ol>
-							</center>
-			      </td>
-					</tr>
-				</table>
-      </td>
-		</tr>
-		<tr><td>&nbsp;</td></tr>
-		<tr><td>&nbsp;</td></tr>
-	</table>
-</body>
-</html>
+</div>

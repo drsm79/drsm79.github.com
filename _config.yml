@@ -1,7 +1,19 @@
- github: [metadata]
- kramdown:
-   input: GFM
-   hard_wrap: false
- gems:
-   - jekyll-coffeescript
-   - jekyll-paginate
+# Welcome to Jekyll!
+#
+# This config file is meant for settings that affect your whole blog, values
+# which you are expected to set up once and rarely need to edit after that.
+# For technical reasons, this file is *NOT* reloaded automatically when you use
+# 'jekyll serve'. If you change this file, please restart the server process.
+
+# Site settings
+title: metsonet
+email: if you have to ask, you'll never know
+description: > # this means to ignore newlines until "baseurl:"
+  Homepage/blog of Simon Metson. An assortment of things appear here over time.
+baseurl: "" # the subpath of your site, e.g. /blog
+url: "http://metsonet.co.uk" # the base hostname & protocol for your site
+twitter_username: drsm79
+github_username:  drsm79
+
+# Build settings
+markdown: kramdown
