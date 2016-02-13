@@ -9,9 +9,15 @@ layout: default
   <ul class="post-list">
     {% for post in site.posts %}
       <li>
+        {% if post.excerpt == post.content %}
+        <h2>
+          {{ post.title }}
+        </h2>
+        {% else %}
         <h2>
           <a class="post-link" href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a>
         </h2>
+        {% endif %}
         {{ post.excerpt }}
         <span class="post-meta">
           posted {{ post.date | date: "%b %-d, %Y" }}
@@ -25,6 +31,18 @@ layout: default
     {% endfor %}
   </ul>
 
-  <p class="rss-subscribe">subscribe <a href="{{ "/feed.xml" | prepend: site.baseurl }}">via RSS</a></p>
+  <h1 class="page-heading">Pages</h1>
+
+  <ul class="post-list">
+    {% for page in site.pages %}
+      <li>
+        <h2>
+          <a class="page-link" href="{{ page.url | prepend: site.baseurl }}">{{ page.title }}</a>
+        </h2>
+        {{ page.url }}
+      </li>
+    {% endfor %}
+  </ul>
+
 
 </div>
