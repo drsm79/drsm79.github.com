@@ -31,18 +31,4 @@ layout: default
     {% endfor %}
   </ul>
 
-  <h1 class="page-heading">Pages</h1>
-
-  <ul class="post-list">
-    {% for page in site.pages %}
-      <li>
-        <h2>
-          <a class="page-link" href="{{ page.url | prepend: site.baseurl }}">{{ page.title }}</a>
-        </h2>
-        {{ page.url }}
-      </li>
-    {% endfor %}
-  </ul>
-
-
 </div>
