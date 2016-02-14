@@ -1,18 +1,21 @@
 ---
+title: Thoughts & ramblings
 layout: default
 ---
 
 <div class="home">
   <ul class="post-list">
-    {% for post in site.posts %}
+    {% for post in site.categories.thoughts %}
       <li>
-        <h2>
         {% if post.excerpt == post.content %}
+        <h2>
           {{ post.title }}
-        {% else %}
-          <a class="post-link" href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a>
-        {% endif %}
         </h2>
+        {% else %}
+        <h2>
+          <a class="post-link" href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a>
+        </h2>
+        {% endif %}
         {{ post.excerpt }}
         <span class="post-meta">
           posted {{ post.date | date: "%b %-d, %Y" }}
@@ -23,17 +26,6 @@ layout: default
           {% endif %}
         </span>
       </li>
-    {% endfor %}
-  </ul>
-
-  <h1 class="page-heading">Pages and categories</h1>
-  <ul class="post-list">
-    {% for post in site.html_pages %}
-    {% if post.title %}
-      <li>
-        <a href="{{ post.url| prepend: site.baseurl }}">{{ post.title }}</a>
-      </li>
-    {% endif %}
     {% endfor %}
   </ul>
 
