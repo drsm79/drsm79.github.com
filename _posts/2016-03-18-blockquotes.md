@@ -1,5 +1,5 @@
 ---
-title: On `<blockquote>`
+title: On blockquote
 layout: post
 date:   2016-03-18 
 categories: web
