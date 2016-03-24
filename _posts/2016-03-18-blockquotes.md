@@ -5,7 +5,7 @@ date:   2016-03-18
 categories: web
 tags: random-thought responsive
 ---
-Someone tweeted about how responsive designss should include different sized images for different devices the other day. For some reason this made me think about Blockquotes this morning. 
+Someone tweeted about how responsive designs should include different sized images for different devices the other day. For some reason this made me think about Blockquotes this morning. 
 
 > "done well they grab attention, highlight key phrases and drive the narrative of the article"
 
