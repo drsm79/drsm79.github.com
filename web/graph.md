@@ -2,6 +2,7 @@
 title: Visualising graphs with Python and IBM Graph Data Store
 layout: default
 ---
+
 # Visualising graphs with Python and IBM Graph Data Store
 
 I've been working on the [IBM Graph Data Store][gds] for the last few months. It's a nice place to build graph based applications, and last night I wrote a simple python app that takes a simple graph and visualises it.
