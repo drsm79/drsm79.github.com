@@ -18,5 +18,5 @@ github_username:  drsm79
 # Build settings
 markdown: kramdown
 
-exclude: CNAME
+exclude: [CNAME]
 timezone: Europe/London
