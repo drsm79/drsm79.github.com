@@ -1,6 +1,8 @@
 ---
 title: Bands I've played in
 layout: default
+category: music
+tags: bands
 ---
 ## Dwindle <a href="http://soundcloud.com/dwindle98"><img src="soundcloud.png" height="15" border="0" alt="Dwindle on SoundCloud"></a>
 
