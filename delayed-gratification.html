@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <style>
+body {
+    margin: 0;            /* Reset default margin */
+}
+iframe {
+    display: block;       /* iframes are inline by default */
+    border: none;         /* Reset default border */
+    height: 100vh;        /* Viewport-relative units */
+    width: 100vw;
+}
+#redirect{
+    text-align: center;
+    background: rgb(5, 0, 27);
+    color: rgb(255, 250, 245);
+    padding: 5px;
+    font-family: Arial, Helvetica, sans-serif;
+}
+</style>
+    </head>
+    <body>
+        <p id="redirect"></p>
+        <iframe id="the_frame" src="https://en.wikipedia.org/wiki/Special:Random"></iframe>
+        <script>
+            function getParameterByName(name, url) {
+                    if (!url) url = window.location.href;
+                    name = name.replace(/[\[\]]/g, "\\$&");
+                    var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
+                        results = regex.exec(url);
+                    if (!results) return null;
+                    if (!results[2]) return '';
+                    return decodeURIComponent(results[2].replace(/\+/g, " "));
+                }
+            var site = getParameterByName("s");
+            var frameList = window.frames;
+            var time = 60 * 1000
+            setTimeout(function () {
+                   window.location = site;
+            }, time);
+            setInterval(function () { 
+                document.getElementById("redirect").textContent = "You will be taken to " + site + " in " + time / 1000 + " seconds."
+                time = time - 1000;
+            }, 1000);
+        </script>
+    </body>
+</html>
