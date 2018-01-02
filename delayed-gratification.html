@@ -9,7 +9,7 @@ body {
     font-family: Arial, Helvetica, sans-serif;
 }
 a {
-    color: rgb(255, 250, 245);   
+    color: rgb(255, 250, 245);
 }
 iframe {
     display: block;       /* iframes are inline by default */
@@ -21,32 +21,37 @@ iframe {
     text-align: center;
     padding: 5px;
 }
+#right{
+    float: right;
+    right:0;
+    top:0;
+    padding-right: 10px;
+}
+#about{
+    padding: 20px;
+}
 </style>
     <script src="https://cdn.jsdelivr.net/npm/pouchdb@5.3.1/dist/pouchdb.min.js"></script>
     </head>
     <body>
-        <h2 id="redirect"></h2>
-        <iframe id="the_frame" src="https://en.m.wikipedia.org/wiki/Special:Random"></iframe>
-        <div>
-            <ul>
-                <li>
-                    <h2><a href="?s=https://twitter.com">Twitter</a></h2>
-                </li>
-                <li>
-                    <h2><a href="?s=https://facebook.com">Facebook</a></h2>
-                </li>
-                <li>
-                    <h2><a href="?s=https://reddit.com">Reddit</a></h2>
-                </li>
-                <form action="delayed-gratification.html" method="get">
-                    <label for="name">URL:</label>
-                    <input type="text" id="s" name="s">
-                    <button type="submit">Go</button>
-                </form>
-            </ul>
+        <div id="header">
+            <div id="right"><a href='delayed-gratification.html'>D.G. stats</a></div>
+            <h2 id="redirect"></h2>
         </div>
-        <div>
-            <ul id="stats"></ul>
+        <iframe id="the_frame" src="https://en.m.wikipedia.org/wiki/Special:Random"></iframe>
+        <div id="about">
+            <h1>Delayed Gratification</h1>
+            <p>An experiment in reducing social network use.</p>
+            <ul id="links">
+                <li>
+                    <form action="delayed-gratification.html" method="get">
+                        <label for="s">Visit URL:</label>
+                        <input type="text" id="s" name="s">
+                        <button type="submit">Go</button>
+                    </form>
+                </li>
+            </ul>
+
         </div>
         <script>
             function getParameterByName(name, url) {
@@ -73,18 +78,11 @@ iframe {
             db.put(ddoc).then(function () {
                 console.log('Created design doc');
             }).catch(function (err) {
-                console.log('Error creating design doc');
+                console.log('Error creating design doc - already exists?');
             });
-            db.info(function (err, info) {
-                if (err) {
-                    return console.log(err);
-                } else {
-                    console.log(info);
-                }
-            });
-            if (site != null){    
+            if (site != null){
                 var time = 60 * 1000;
-                db.post({site: site}, function (err, response) {
+                db.post({site: site, ts: new Date().getTime()}, function (err, response) {
                     if (err) {
                         return console.log(err);
                     } else {
@@ -94,16 +92,23 @@ iframe {
                 setTimeout(function () {
                     window.location = site;
                 }, time);
-                setInterval(function () { 
-                    var sitelink = "<a href='" + site + "'>" + site + "</a>"; 
-                    document.getElementById("redirect").innerHTML = "You will be taken to " + sitelink + " in " + time / 1000 + " seconds."
+                setInterval(function () {
+                    var sitelink = "<a href='" + site + "'>" + site + "</a>";
+                    document.getElementById("redirect").innerHTML = "You will be taken to " + sitelink + " in " + time / 1000 + " seconds.";
                     time = time - 1000;
                 }, 1000);
             } else {
-                document.getElementById("redirect").remove();
+                document.getElementById("header").remove();
                 document.getElementById("the_frame").remove();
                 db.query('stats/by_site', {group: true}).then(function (res) {
-                    console.log(res);
+                    var sites = res.rows.sort(function (a, b) {
+                        return b.value - a.value;
+                    });
+                    sites.forEach(function(e) {
+                        var li = document.createElement("li");
+                        li.innerHTML = '<h2><a href="?s=' + e.key + '">' + e.key + '</a> (' + e.value + ' visits)</h2>'
+                        document.getElementById("links").appendChild(li);
+                    });
                 }).catch(function (err) {
                     console.log(err);
                 });
