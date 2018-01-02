@@ -22,6 +22,7 @@ iframe {
     padding: 5px;
 }
 </style>
+    <script src="https://cdn.jsdelivr.net/npm/pouchdb@5.3.1/dist/pouchdb.min.js"></script>
     </head>
     <body>
         <h2 id="redirect"></h2>
@@ -44,6 +45,9 @@ iframe {
                 </form>
             </ul>
         </div>
+        <div>
+            <ul id="stats"></ul>
+        </div>
         <script>
             function getParameterByName(name, url) {
                     if (!url) url = window.location.href;
@@ -56,8 +60,37 @@ iframe {
                 }
             var site = getParameterByName("s");
             var frameList = window.frames;
+            var db = new PouchDB('delayeddb');
+            var ddoc = {
+                _id: '_design/stats',
+                views: {
+                    by_site: {
+                        map: function (doc) { emit(doc.site); }.toString(),
+                        reduce: '_count'
+                    }
+                }
+            };
+            db.put(ddoc).then(function () {
+                console.log('Created design doc');
+            }).catch(function (err) {
+                console.log('Error creating design doc');
+            });
+            db.info(function (err, info) {
+                if (err) {
+                    return console.log(err);
+                } else {
+                    console.log(info);
+                }
+            });
             if (site != null){    
                 var time = 60 * 1000;
+                db.post({site: site}, function (err, response) {
+                    if (err) {
+                        return console.log(err);
+                    } else {
+                        console.log("Document created Successfully");
+                    }
+                });
                 setTimeout(function () {
                     window.location = site;
                 }, time);
@@ -69,6 +102,11 @@ iframe {
             } else {
                 document.getElementById("redirect").remove();
                 document.getElementById("the_frame").remove();
+                db.query('stats/by_site', {group: true}).then(function (res) {
+                    console.log(res);
+                }).catch(function (err) {
+                    console.log(err);
+                });
             }
         </script>
     </body>
