@@ -37,6 +37,11 @@ iframe {
                 <li>
                     <h2><a href="?s=https://reddit.com">Reddit</a></h2>
                 </li>
+                <form action="delayed-gratification.html" method="get">
+                    <label for="name">URL:</label>
+                    <input type="text" id="s" name="s">
+                    <button type="submit">Go</button>
+                </form>
             </ul>
         </div>
         <script>
@@ -57,8 +62,8 @@ iframe {
                     window.location = site;
                 }, time);
                 setInterval(function () { 
-                    //var sitelink = "<a href='" + site + "'>" + site + "</a>"; 
-                    document.getElementById("redirect").textContent = "You will be taken to " + site + " in " + time / 1000 + " seconds."
+                    var sitelink = "<a href='" + site + "'>" + site + "</a>"; 
+                    document.getElementById("redirect").innerHTML = "You will be taken to " + sitelink + " in " + time / 1000 + " seconds."
                     time = time - 1000;
                 }, 1000);
             } else {
