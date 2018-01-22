@@ -2,7 +2,7 @@
 title: DIY Delay Module
 layout: default
 tags: diy delay eurorack module music
-category: projects
+category: music
 ---
 
 # Building a delay module
