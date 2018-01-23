@@ -13,7 +13,7 @@ layout: default
           <a class="post-link" href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a>
         {% endif %}
         </h2>
-        {{ post.excerpt }}
+        {{ post.excerpt | markdownify }}
         <span class="post-meta">
           posted {{ post.date | date: "%b %-d, %Y" }}
           {% if post.tags != empty %}
