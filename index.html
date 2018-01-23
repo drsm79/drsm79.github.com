@@ -15,7 +15,7 @@ layout: default
         </h2>
         {{ post.excerpt | markdownify }}
         <span class="post-meta">
-          <a class="post-link" href="{{ post.url | prepend: site.baseurl }}">posted {{ post.date | date: "%b %-d, %Y" }}</a>
+          <a href="{{ post.url | prepend: site.baseurl }}">posted {{ post.date | date: "%b %-d, %Y" }}</a>
           {% if post.tags != empty %}
           § tagged: {{ post.tags | join: ", " }}
           {% endif %}
