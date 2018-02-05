@@ -42,7 +42,7 @@ ul, li{
                 var doc = {
                     _id: date.toISOString().split('T')[0],
                     state: state,
-                    log: document.getElementById("more").innerHTML
+                    log: document.getElementById("more").value
                 };
                 console.log(doc);
                 db.put(doc).then(function (resp){
