@@ -1,0 +1,99 @@
+---
+title: How was your day?
+---
+<!DOCTYPE html>
+<html>
+    <head>
+        <style>
+body {
+    margin: 0;            /* Reset default margin */
+    background: rgb(21, 159, 193);
+    color: rgb(255, 250, 245);
+    font-family: Arial, Helvetica, sans-serif;
+}
+a {
+    color: rgb(255, 250, 245);
+}
+#redirect{
+    text-align: center;
+    padding: 5px;
+}
+#right{
+    float: right;
+    right:0;
+    top:0;
+    padding-right: 10px;
+}
+#about{
+    padding: 20px;
+}
+
+ul, li{
+    display: inline;
+}
+</style>
+    <script src="https://cdn.jsdelivr.net/npm/pouchdb@5.3.1/dist/pouchdb.min.js"></script>
+        <script>
+            var responses = {'good': 'glad', 'bad': 'sorry'};
+            function record(state){
+                console.log('recording state: ' + state);
+                var db = new PouchDB('howwasyourday');
+                var date = new Date();
+                var doc = {
+                    _id: date.toISOString().split('T')[0],
+                    state: state,
+                    log: document.getElementById("more").innerHTML
+                };
+                console.log(doc);
+                db.put(doc).then(function (resp){
+                    console.log(resp);
+                }).catch(function(err){
+                    console.log(err);
+                });
+                document.getElementById("about").innerHTML = "<h1>I'm " + responses[state] + " to hear that</h1>";
+            };
+
+            function init() {
+                var db = new PouchDB('howwasyourday');
+                db.get('_design/info').catch(function(err){
+                    console.log(err);
+                    var ddoc = {
+                        _id: '_design/info',
+                        views: {
+                            by_site: {
+                                map: function (doc) { emit(doc.date); }.toString(),
+                                reduce: '_count'
+                            }
+                        }
+                    };
+
+                    db.put(ddoc).then(function () {
+                        console.log('Created design doc');
+                    }).catch(function (err) {
+                        console.log('Error creating design doc - already exists?');
+                    });
+                });
+                var date = new Date();
+                db.get(date.toISOString().split('T')[0]).then(function (resp){
+                    console.log(resp);
+                    document.getElementById("about").innerHTML = "<h1>I'm " + responses[resp.state] + " to hear that you've had a " + resp.state + " day</h1>";
+                });
+            };
+        </script>
+    </head>
+    <body onload="init();">
+        <center>
+        <div id="about">
+            <h1>How was your day?</h1>
+            <p>Mood tracking in a one page, offline app.</p>
+            <form>
+                <button id="good" onclick="record('good')">Good</button>
+                <button id="bad" onclick="record('bad')">Bad</button>
+                <br/>
+                <textarea id="more" placeholder="Any more?"></textarea>
+            </form>
+        </div>
+    </center>
+
+    </body>
+</html>
