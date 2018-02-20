@@ -76,7 +76,7 @@ title: How was your day?
                 var db = new PouchDB('howwasyourday');
                 var date = new Date();
                 var doc = {
-                    _id: date.toISOString.split('T')[0],
+                    _id: date.toISOString().split('T')[0],
                     state: state,
                     log: document.getElementById("more").value
                 };
