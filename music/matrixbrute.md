@@ -1,10 +1,10 @@
 ---
-title: Matrixbrute
+title: Matrixbrute & Bitwig
 layout: default
 category: music
 tags: synths, arturia, matrixbrute, bitwig
 ---
-SO Im a proudd & very lucky owner of a Marixbrute. It's a cracking synth & I won't have a bad word said against it. 
+I'm a proud & very lucky owner of a Marixbrute. It's a cracking synth & I won't have a bad word said against it. 
 
 I use [Bitwig][] as my DAW - it's a great combination of "traditional" and "clips", & I find I think about in a way similar to my modular (or Buzz Tracker... ah, those were the days....), as opposed to Logic which was more like a very clever tape machine. I've been trying to use outboard stuff from bitwig as much as possible - as good as VST's are, there's something more expressive or more unique from an actual instrument, even if it's sequenced from the DAW. So, naturally, I wanted to control the 'brute from the 'wig. 
 
