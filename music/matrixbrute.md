@@ -13,4 +13,4 @@ Fortunately I stumbled upon a [forum post][] which nicely set out all the cc val
 
 [Bitwig]: https://www.bitwig.com/en/home.html
 [forum post]: https://forum.arturia.com/index.php?topic=90016.0
-[preset]: music/matrixbrute.bwpreset
+[preset]: matrixbrute.bwpreset
