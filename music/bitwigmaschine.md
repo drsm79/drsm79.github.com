@@ -30,7 +30,7 @@ First of all you'll want to add a MIDI Program Change & a Maschine device to you
 
 Put the Program Change up front, and put the Maschine in the Program Change devices chain. You can have the Maschine device follow the Program Change device (as above), if you do that you need the Program Change device to be unscoped.
 
-![Screen shot of the unscoped Program Change device](devices_unscoped.png)
+![Screen shot of the unscoped Program Change device]!(devices_unscoped.png)
 
 Then click on the Maschine to see the outputs for the VST, this'll warn you the plugin has multiple outputs.
 
@@ -51,25 +51,25 @@ Now lets look at Maschine. We want to do two things here:
 
 How Maschine receives a Program Change is configured under the Edit menu (obviously...):
 
-![Maschines idea of what Edit is for and mine differ](edit_menu_midi_change.png)
+![Maschines idea of what Edit is for and mine differ]!(edit_menu_midi_change.png)
 
 That'll open a simple dialog, you want to set it up something like this (assuming you didn't change midi channel etc. on the Program Change device):
 
-[Simples](midi_change.png)
+![Simples](midi_change.png)
 
 #### Audio routing
 
 For these screen grabs I made a simple 3 scene, 3 group track in Maschine. The first scene is "silence". You want this, or something like it, so you can tell Maschine to stop playing from Bitwig. The other two are an intro with one group playing, and a main riff bit with all three groups playing.
 
-[Three Scenes, including the silence](maschenes.png)
+![Three Scenes, including the silence](maschenes.png)
 
 For each group I configured the audio output to be a separate channel:
 
-[Group A1](group_a1.png)
+![Group A1](group_a1.png)
 
-[Group B1](group_b1.png)
+![Group B1](group_b1.png)
 
-[Group C1](group_c1.png)
+![Group C1](group_c1.png)
 
 ### Bitwig clips to Maschine Scenes
 
@@ -77,23 +77,23 @@ Now you need to set up corresponding clips in Bitwig, then tell them to fire the
 
 Open up the automation editor for your first clip, and pick out the Program setting for the MIDI Program Change device:
 
-[Clicking through this for each clip is mildly annoying...](setu_prog_change.png)
+[Clicking through this for each clip is mildly annoying...]!(setu_prog_change.png)
 
 You want to set the Program value to the scene number you want to trigger so Bitwig clip 1 needs to fire program 1 to trigger Maschine scene 1 etc.
 
-[Configure the silence](silence_clip.png)
+![Configure the silence](silence_clip.png)
 
 You should now be able to jump through tempo & Q synced clips/scenes in bitwig (using for e.g. a launchpad to trigger clips) that play in Maschine, and whats more route the audio of those scenes independently. For example; here's silence doing it's thing:
 
-[Enjoy the silence](silence_mixer.png)
+![Enjoy the silence](silence_mixer.png)
 
 Here's the intro (one group) clip:
 
-[Introducing...](intro_mixer.png)
+![Introducing...](intro_mixer.png)
 
 Finally, here's the riff (three groups playing):
 
-[Groups on](riff_mixer.png)
+![Groups on](riff_mixer.png)
 
 ## Fin
 
