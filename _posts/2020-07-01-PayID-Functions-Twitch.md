@@ -3,6 +3,7 @@ title: PayID & Cloud Functions live coding Twitch
 layout: post
 date:   2020-07-01
 categories: projects 
+video_id: 665878889
 tags: coding payid micropayments serverless twitch
 ---
 
@@ -18,9 +19,7 @@ Matt & I started discussing ways that this technology could be used, and the ide
 
 But that then ballooned into something a bit more involved. Could you support developers by paying them for contributions via PayID? Well, we thought we'd give it a shot. 
 
-Heres part one of two (or maybe three...) where we start to build up a thing that pays the contributor for their work, via PayID & the interledger.
-
-<iframe src="https://player.twitch.tv/?video=665878889&parent=metsonet.co.uk" frameborder="0" allowfullscreen="true" scrolling="no" height="378" width="620"></iframe>
+Below is part one of two (or maybe three...) where we start to build up a thing that pays the contributor for their work, via PayID & the interledger.
 
 It was quite fun, despite a bit of a scramble to get the streaming & code sharing working, and I'm looking forward to doing part two later this week/early next. I'm also thinking about twitching some music making in the not too distant future...
 
