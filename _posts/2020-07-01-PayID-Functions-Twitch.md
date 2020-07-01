@@ -3,7 +3,7 @@ title: PayID & Cloud Functions live coding Twitch
 layout: post
 date:   2020-07-01
 categories: projects 
-tags: coding payid micropayments serverless
+tags: coding payid micropayments serverless twitch
 ---
 
 Yesterday I got on a Twitch video stream with my friend & colleague [Matt Hamilton](https://twitter.com/hammertoe). He's been talking about micropayments, interledger, XRP etc. for some time, and with lockdown I've been thinking about it a bit more. It seems like a nice way to address "the original sin" of the web, and let people pay for what they consume without giving away their entire online selves (and that of the rest of their social network, too...). 
@@ -22,6 +22,7 @@ Heres part one of two (or maybe three...) where we start to build up a thing tha
 
 <iframe src="https://player.twitch.tv/?video=665878889&parent=metsonet.co.uk" frameborder="0" allowfullscreen="true" scrolling="no" height="378" width="620"></iframe>
 
+It was quite fun, despite a bit of a scramble to get the streaming & code sharing working, and I'm looking forward to doing part two later this week/early next. I'm also thinking about twitching some music making in the not too distant future...
 
   <script>
     let total = 0
