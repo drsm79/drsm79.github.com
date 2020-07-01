@@ -38,7 +38,7 @@ Heres part one of two (or maybe three...) where we start to build up a thing tha
         total += Number(ev.detail.amount)
 
         const formatted = (total * Math.pow(10, -scale)).toFixed(scale)
-        document.getElementById('total').innerText = "Thanks to you, I've made " + formatted
+        document.getElementById('total').innerText = "Thanks to you, I've made " + formatted + "!"
       })
     }
   </script>
