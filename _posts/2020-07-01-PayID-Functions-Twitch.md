@@ -2,7 +2,7 @@
 title: PayID & Cloud Functions live coding Twitch
 layout: video
 date:   2020-07-01
-categories: projects 
+categories: projects web
 twitch_id: 665878889
 cinnamon_id: 354028607502288450
 tags: coding python payid micropayments serverless twitch
