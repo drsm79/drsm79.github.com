@@ -3,5 +3,12 @@ layout: post
 ---
 {{ content }}
 <center>
+{% if page.video_url %}
 <iframe width="560" height="315" src="{{page.video_url}}" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-</center>
+{% endif %}
+{% if page.twitch_id %}
+<iframe src="https://player.twitch.tv/?video={{page.twitch_id}}&amp;parent=metsonet.co.uk" frameborder="0" allowfullscreen="true" scrolling="no" height="378" width="620"></iframe>
+{% endif %}
+{% if page.cinnamon_id %}
+<iframe width="480" height="270" src=https://www.cinnamon.video/embed?v={{page.cinnamon_id}} frameborder="0" allow="monetization; accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+{% endif %}
