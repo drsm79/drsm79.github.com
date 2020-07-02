@@ -7,15 +7,13 @@ layout: default
   <ul class="post-list">
     {% for post in site.categories.music %}
       <li>
+        <h2 class="post-link">
         {% if post.excerpt == post.content %}
-        <h2>
           {{ post.title }}
-        </h2>
         {% else %}
-        <h2>
-          <a class="post-link" href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a>
-        </h2>
+          <a href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a>
         {% endif %}
+        </h2>
         {{ post.excerpt }}
         <span class="post-meta">
           posted {{ post.date | date: "%b %-d, %Y" }}
