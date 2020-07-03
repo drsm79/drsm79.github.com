@@ -1,5 +1,5 @@
 ---
-title: PayID & Cloud Functions live coding Twitch, 
+title: PayID & Cloud Functions live coding Twitch, part 2
 layout: video
 date:   2020-07-03
 categories: projects web
@@ -8,3 +8,5 @@ tags: coding python payid micropayments serverless twitch
 ---
 
 Part two pulled together all the things into a working demo, Matt is indeed a big spender!
+
+Even the docker gods smiled on us...
