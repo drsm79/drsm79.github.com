@@ -7,6 +7,14 @@
       "addressDetails": {
         "address": "$ilp.uphold.com/Jqz4BEwQQKmp"
       }
+    },
+    {
+      "paymentNetwork": "XRPL",
+      "environment": "TESTNET",
+      "addressDetailsType": "CryptoAddressDetails",
+      "addressDetails": {
+        "address": "rGFzdwNWDuVBwVN3Rn3vwrx4ZNi8FBGVZX"
+      }
     }
   ],
   "payId": "pay$metsonet.co.uk"
