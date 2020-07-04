@@ -14,7 +14,7 @@ baseurl: "" # the subpath of your site, e.g. /blog
 url: "http://metsonet.co.uk" # the base hostname & protocol for your site
 twitter_username: drsm79
 github_username:  drsm79
-
+ilp: "$ilp.uphold.com/Jqz4BEwQQKmp"
 # Build settings
 markdown: kramdown
 
