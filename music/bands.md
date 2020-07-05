@@ -1,7 +1,7 @@
 ---
 title: Bands I've played in
 layout: default
-category: music
+categories: music
 tags: bands
 ---
 ## Anechoics
@@ -29,7 +29,7 @@ Post-rock.
  * Guitar: James Martin
  * Bass: Ben Blackmore
  * Drums: Ali Tones
- 
+
 ## Uphills <a href="http://soundcloud.com/uphills"><img src="soundcloud.png" height="15" border="0" alt="Uphills on SoundCloud"></a>
 
 Garage rock groovers.

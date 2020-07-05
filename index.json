@@ -1,18 +1,19 @@
 ---
 layout: none
 ---
-{% assign post_tags = site.posts | map: "tags" %}
-{% assign post_categories = site.posts | map: "categories" %}
-{% assign page_tags = site.pages | map: "tags" %}
-{% assign page_categories = site.pages | map: "categories" %}
-{% assign all_categories = post_categories | concat: page_categories | join: ", " | split : ", " | compact | uniq | sort  %}
-{% assign all_tags = post_tags | concat: page_tags | join: ", " | split : ", " | compact | uniq | sort %}
+{% assign all_categories = site.documents | map: "categories" | join: ", " | split : ", " | compact | uniq | sort  %}
+{% assign all_page_tags = site.pages | map : "tags" | join: ", " | split : ", " | compact | uniq | sort %}
+{% assign all_post_tags = site.posts | map : "tags" | join: ", " | split : ", " | compact | uniq | sort %}
+{% assign all_tags = all_page_tags | concat: all_post_tags %}
+{% assign all_tags = all_page_tags | compact %}
 {
     "tags": {
-    {% for tag in all_tags %}{{ tag | jsonify}}: {{site.tags[tag] | map: "url" | jsonify}}{% unless forloop.last %},{% endunless %}
-    {% endfor %}
+{% for tag in all_tags %}{% assign doc_for_tag = site.tags[tag] | map: "url" %}{% for page in site.pages %}{% if page.tags contains tag %}{% assign doc_for_tag = doc_for_tag | push: page.url %}{% endif %}{% endfor %}
+      {{tag| jsonify}}: {{doc_for_tag | uniq | jsonify}}{% unless forloop.last %},{% endunless %}
+{% endfor %}
     },
     "categories": {
-    {% for category in all_categories %}{{ category | jsonify}}: {{site.categories[category] | map: "url" | jsonify}}{% unless forloop.last %},{% endunless %}{% endfor %}
+      {% for category in all_categories %}{% assign doc_for_cat = site.categories[category] | map: "url" %}{% for page in site.pages %}{% if page.categories contains category %}{% assign doc_for_cat = doc_for_cat | push: page.url %}{% endif %}{% endfor %}
+      {{category| jsonify}}: {{doc_for_cat | uniq | jsonify}}{% unless forloop.last %},{% endunless %}{% endfor %}
     }
 }

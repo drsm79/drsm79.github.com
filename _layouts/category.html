@@ -1,0 +1,55 @@
+---
+layout: default
+---
+<div class="home">
+    {% assign cap_cat = page.category | capitalize%}
+    <h1>{{ cap_cat }}</h1>
+
+    {% if page.subtitle %}
+    <p style="text-align:right">{{page.subtitle}}</p>
+    {% endif %}
+
+
+    <ul class="post-list">
+        {% for post in site.categories[page.category] %}
+        <li>
+            <h2 class="post-link">
+                {% if post.excerpt == post.content %}
+                {{ post.title }}
+                {% else %}
+                <a href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a>
+                {% endif %}
+            </h2>
+            {{ post.excerpt }}
+            <span class="post-meta">
+                posted {{ post.date | date: "%b %-d, %Y" }}
+                {% if post.tags != empty %}
+                § tagged: {{ post.tags | join: ", " }}
+                {% endif %}
+            </span>
+        </li>
+        {% endfor %}
+        {% for post in site.html_pages %}
+        {% if post.title and post.categories == page.category %}
+        <li>
+            {% if post.excerpt == post.content %}
+            <h2>
+                {{ post.title }}
+            </h2>
+            {% else %}
+            <h2>
+                <a class="post-link" href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a>
+            </h2>
+            {% endif %}
+            {{ post.excerpt }}
+            <span class="post-meta">
+                {% if post.tags != empty %}
+                § tagged: {{ post.tags | join: ", " }}
+                {% endif %}
+            </span>
+        </li>
+        {% endif %}
+        {% endfor %}
+    </ul>
+
+</div>

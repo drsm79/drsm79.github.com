@@ -1,121 +1,135 @@
 ---
 title: Delayed Gratification
+categories: web
+tags: experiment
 ---
 <!DOCTYPE html>
 <html>
-    <head>
-        <style>
-body {
-    margin: 0;            /* Reset default margin */
-    background: rgb(65, 0, 65);
-    color: rgb(255, 250, 245);
-    font-family: Arial, Helvetica, sans-serif;
-}
-a {
-    color: rgb(255, 250, 245);
-}
-iframe {
-    display: block;       /* iframes are inline by default */
-    border: none;         /* Reset default border */
-    height: 100vh;        /* Viewport-relative units */
-    width: 100vw;
-}
-#redirect{
-    text-align: center;
-    padding: 5px;
-}
-#right{
-    float: right;
-    right:0;
-    top:0;
-    padding-right: 10px;
-}
-#about{
-    padding: 20px;
-}
-</style>
-    <script src="https://cdn.jsdelivr.net/npm/pouchdb@5.3.1/dist/pouchdb.min.js"></script>
-    </head>
-    <body>
-        <div id="header">
-            <div id="right"><a href='delayed-gratification.html'>D.G. stats</a></div>
-            <h2 id="redirect"></h2>
-        </div>
-        <iframe id="the_frame" src="https://en.m.wikipedia.org/wiki/Special:Random"></iframe>
-        <div id="about">
-            <h1>Delayed Gratification</h1>
-            <p>An experiment in reducing social network use.</p>
-            <ul id="links">
-                <li>
-                    <form action="delayed-gratification.html" method="get">
-                        <label for="s">Visit URL:</label>
-                        <input type="text" id="s" name="s">
-                        <button type="submit">Go</button>
-                    </form>
-                </li>
-            </ul>
 
-        </div>
-        <script>
-            function getParameterByName(name, url) {
-                    if (!url) url = window.location.href;
-                    name = name.replace(/[\[\]]/g, "\\$&");
-                    var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
-                        results = regex.exec(url);
-                    if (!results) return null;
-                    if (!results[2]) return '';
-                    return decodeURIComponent(results[2].replace(/\+/g, " "));
+<head>
+    <style>
+        body {
+            margin: 0;
+            /* Reset default margin */
+            background: rgb(65, 0, 65);
+            color: rgb(255, 250, 245);
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        a {
+            color: rgb(255, 250, 245);
+        }
+
+        iframe {
+            display: block;
+            /* iframes are inline by default */
+            border: none;
+            /* Reset default border */
+            height: 100vh;
+            /* Viewport-relative units */
+            width: 100vw;
+        }
+
+        #redirect {
+            text-align: center;
+            padding: 5px;
+        }
+
+        #right {
+            float: right;
+            right: 0;
+            top: 0;
+            padding-right: 10px;
+        }
+
+        #about {
+            padding: 20px;
+        }
+    </style>
+    <script src="https://cdn.jsdelivr.net/npm/pouchdb@5.3.1/dist/pouchdb.min.js"></script>
+</head>
+
+<body>
+    <div id="header">
+        <div id="right"><a href='delayed-gratification.html'>D.G. stats</a></div>
+        <h2 id="redirect"></h2>
+    </div>
+    <iframe id="the_frame" src="https://en.m.wikipedia.org/wiki/Special:Random"></iframe>
+    <div id="about">
+        <h1>Delayed Gratification</h1>
+        <p>An experiment in reducing social network use.</p>
+        <ul id="links">
+            <li>
+                <form action="delayed-gratification.html" method="get">
+                    <label for="s">Visit URL:</label>
+                    <input type="text" id="s" name="s">
+                    <button type="submit">Go</button>
+                </form>
+            </li>
+        </ul>
+
+    </div>
+    <script>
+        function getParameterByName(name, url) {
+            if (!url) url = window.location.href;
+            name = name.replace(/[\[\]]/g, "\\$&");
+            var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
+                results = regex.exec(url);
+            if (!results) return null;
+            if (!results[2]) return '';
+            return decodeURIComponent(results[2].replace(/\+/g, " "));
+        }
+        var site = getParameterByName("s");
+        var frameList = window.frames;
+        var db = new PouchDB('delayeddb');
+        var ddoc = {
+            _id: '_design/stats',
+            views: {
+                by_site: {
+                    map: function (doc) { emit(doc.site); }.toString(),
+                    reduce: '_count'
                 }
-            var site = getParameterByName("s");
-            var frameList = window.frames;
-            var db = new PouchDB('delayeddb');
-            var ddoc = {
-                _id: '_design/stats',
-                views: {
-                    by_site: {
-                        map: function (doc) { emit(doc.site); }.toString(),
-                        reduce: '_count'
-                    }
-                }
-            };
-            db.put(ddoc).then(function () {
-                console.log('Created design doc');
-            }).catch(function (err) {
-                console.log('Error creating design doc - already exists?');
-            });
-            if (site != null){
-                var time = 60 * 1000;
-                db.post({site: site, ts: new Date().getTime()}, function (err, response) {
-                    if (err) {
-                        return console.log(err);
-                    } else {
-                        console.log("Document created Successfully");
-                    }
-                });
-                setTimeout(function () {
-                    window.location = site;
-                }, time);
-                setInterval(function () {
-                    var sitelink = "<a href='" + site + "'>" + site + "</a>";
-                    document.getElementById("redirect").innerHTML = "You will be taken to " + sitelink + " in " + time / 1000 + " seconds.";
-                    time = time - 1000;
-                }, 1000);
-            } else {
-                document.getElementById("header").remove();
-                document.getElementById("the_frame").remove();
-                db.query('stats/by_site', {group: true}).then(function (res) {
-                    var sites = res.rows.sort(function (a, b) {
-                        return b.value - a.value;
-                    });
-                    sites.forEach(function(e) {
-                        var li = document.createElement("li");
-                        li.innerHTML = '<h2><a href="?s=' + e.key + '">' + e.key + '</a> (' + e.value + ' visits)</h2>'
-                        document.getElementById("links").appendChild(li);
-                    });
-                }).catch(function (err) {
-                    console.log(err);
-                });
             }
-        </script>
-    </body>
+        };
+        db.put(ddoc).then(function () {
+            console.log('Created design doc');
+        }).catch(function (err) {
+            console.log('Error creating design doc - already exists?');
+        });
+        if (site != null) {
+            var time = 60 * 1000;
+            db.post({ site: site, ts: new Date().getTime() }, function (err, response) {
+                if (err) {
+                    return console.log(err);
+                } else {
+                    console.log("Document created Successfully");
+                }
+            });
+            setTimeout(function () {
+                window.location = site;
+            }, time);
+            setInterval(function () {
+                var sitelink = "<a href='" + site + "'>" + site + "</a>";
+                document.getElementById("redirect").innerHTML = "You will be taken to " + sitelink + " in " + time / 1000 + " seconds.";
+                time = time - 1000;
+            }, 1000);
+        } else {
+            document.getElementById("header").remove();
+            document.getElementById("the_frame").remove();
+            db.query('stats/by_site', { group: true }).then(function (res) {
+                var sites = res.rows.sort(function (a, b) {
+                    return b.value - a.value;
+                });
+                sites.forEach(function (e) {
+                    var li = document.createElement("li");
+                    li.innerHTML = '<h2><a href="?s=' + e.key + '">' + e.key + '</a> (' + e.value + ' visits)</h2>'
+                    document.getElementById("links").appendChild(li);
+                });
+            }).catch(function (err) {
+                console.log(err);
+            });
+        }
+    </script>
+</body>
+
 </html>

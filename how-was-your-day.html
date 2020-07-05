@@ -1,173 +1,197 @@
 ---
 title: How was your day?
+categories: web
+tags:
+    - privacy
+    - offline first
+    - offline only
+    - offline apps
+    - idea
+    - health tracking
+    - privacy
+    - experiment
 ---
 <!DOCTYPE html>
 <html>
-    <head>
-        <style>
-            body {
-                margin: 0;            /* Reset default margin */
-                background: rgb(21, 159, 193);
-                color: rgb(255, 250, 245);
-                font-family: Arial, Helvetica, sans-serif;
-            }
-            a {
-                color: rgb(255, 250, 245);
-            }
-            #redirect{
-                text-align: center;
-                padding: 5px;
-            }
-            #right{
-                float: right;
-                right:0;
-                top:0;
-                padding-right: 10px;
-            }
-            #about{
-                padding: 20px;
-            }
 
-            ul, li{
-                display: inline;
-            }
-            .vis-item.good {
-                background-color: greenyellow;
-                border-color: green;
-                color: green;
-            }
-            .vis-item.bad {
-                background-color: red;
-                border-color: darkred;
-                color: white;
-            }
-            .vis-timeline{
-                background-color: gainsboro;
-            }
-            .vis-selected.bad, .vis-selected.good{
-                color: brown;
-                box-shadow: 0 0 10px gray;
-            }
-        </style>
-        <link href="http://visjs.org/dist/vis.css" rel="stylesheet" type="text/css" />
+<head>
+    <style>
+        body {
+            margin: 0;
+            /* Reset default margin */
+            background: rgb(21, 159, 193);
+            color: rgb(255, 250, 245);
+            font-family: Arial, Helvetica, sans-serif;
+        }
 
-        <script src="https://cdn.jsdelivr.net/npm/pouchdb@5.3.1/dist/pouchdb.min.js"></script>
-        <script src="http://visjs.org/dist/vis.min.js"></script>
-        <script>
-            var names = {
-                'good': {title: 'Good Days', 'response': 'glad'},
-                'bad': {title:'Bad Days', response: 'sorry'}
+        a {
+            color: rgb(255, 250, 245);
+        }
+
+        #redirect {
+            text-align: center;
+            padding: 5px;
+        }
+
+        #right {
+            float: right;
+            right: 0;
+            top: 0;
+            padding-right: 10px;
+        }
+
+        #about {
+            padding: 20px;
+        }
+
+        ul,
+        li {
+            display: inline;
+        }
+
+        .vis-item.good {
+            background-color: greenyellow;
+            border-color: green;
+            color: green;
+        }
+
+        .vis-item.bad {
+            background-color: red;
+            border-color: darkred;
+            color: white;
+        }
+
+        .vis-timeline {
+            background-color: gainsboro;
+        }
+
+        .vis-selected.bad,
+        .vis-selected.good {
+            color: brown;
+            box-shadow: 0 0 10px gray;
+        }
+    </style>
+    <link href="http://visjs.org/dist/vis.css" rel="stylesheet" type="text/css" />
+
+    <script src="https://cdn.jsdelivr.net/npm/pouchdb@5.3.1/dist/pouchdb.min.js"></script>
+    <script src="http://visjs.org/dist/vis.min.js"></script>
+    <script>
+        var names = {
+            'good': { title: 'Good Days', 'response': 'glad' },
+            'bad': { title: 'Bad Days', response: 'sorry' }
+        };
+        // Create a DataSet (allows two way data-binding)
+        var items = new vis.DataSet([]);
+        function addTimelineDoc(doc) {
+            items.add({
+                id: items.length + 1,
+                content: doc.state,
+                start: doc._id,
+                group: 1 + Object.keys(names).indexOf(doc.state),
+                title: doc.log,
+                className: doc.state
+            });
+        }
+
+        function record(state) {
+            console.log('recording state: ' + state);
+            var db = new PouchDB('howwasyourday');
+            var date = new Date();
+            var doc = {
+                _id: date.toISOString().split('T')[0],
+                state: state,
+                log: document.getElementById("more").value
             };
-            // Create a DataSet (allows two way data-binding)
-            var items = new vis.DataSet([]);
-            function addTimelineDoc(doc){
-                items.add({
-                    id: items.length + 1,
-                    content: doc.state,
-                    start: doc._id,
-                    group: 1 + Object.keys(names).indexOf(doc.state),
-                    title: doc.log,
-                    className: doc.state
-                });
-            }
+            console.log(doc);
+            db.put(doc).then(function (resp) {
+                console.log(resp);
+            }).catch(function (err) {
+                console.log(err);
+            });
+            document.getElementById("about").innerHTML = "<h1>I'm " + names[state].response + " to hear that</h1>";
 
-            function record(state){
-                console.log('recording state: ' + state);
-                var db = new PouchDB('howwasyourday');
-                var date = new Date();
-                var doc = {
-                    _id: date.toISOString().split('T')[0],
-                    state: state,
-                    log: document.getElementById("more").value
-                };
-                console.log(doc);
-                db.put(doc).then(function (resp){
-                    console.log(resp);
-                }).catch(function(err){
-                    console.log(err);
-                });
-                document.getElementById("about").innerHTML = "<h1>I'm " + names[state].response + " to hear that</h1>";
+            addTimelineDoc(doc);
+        };
 
-                addTimelineDoc(doc);
+        function timelineFromDocs(db) {
+            var container = document.getElementById('visualization');
+            // Configuration for the Timeline
+            var options = {
+                tooltip: {
+                    followMouse: true,
+                    overflowMethod: 'cap'
+                },
+                showCurrentTime: false,
+                width: '90%',
+                zoomMin: 60 * 60 * 24 * 1000
             };
 
-            function timelineFromDocs(db){
-                var container = document.getElementById('visualization');
-                // Configuration for the Timeline
-                var options = {
-                    tooltip: {
-                        followMouse: true,
-                        overflowMethod: 'cap'
-                    },
-                    showCurrentTime: false,
-                    width: '90%',
-                    zoomMin: 60 * 60 * 24* 1000
-                };
+            var groups = new vis.DataSet();
+            Object.keys(names).forEach(function f(x, y) {
+                groups.add({ id: y + 1, content: names[x].title });
+            });
+            db.allDocs({ include_docs: true }).then(function f(data) {
 
-                var groups = new vis.DataSet();
-                Object.keys(names).forEach(function f(x, y){
-                    groups.add({id: y + 1, content: names[x].title});
+                console.log(data);
+                data.rows.forEach(function x(row) {
+                    var doc = row.doc;
+                    if (doc.state) {
+                        addTimelineDoc(doc);
+                    }
                 });
-                db.allDocs({include_docs:true}).then(function f(data){
+                document.getElementById('loading').style.display = 'none';
+                var timeline = new vis.Timeline(container, items, groups, options);
+            });
+        };
 
-                    console.log(data);
-                    data.rows.forEach(function x(row){
-                        var doc = row.doc;
-                        if (doc.state){
-                            addTimelineDoc(doc);
+        function init() {
+            var db = new PouchDB('howwasyourday');
+            db.get('_design/info').catch(function (err) {
+                console.log(err);
+                var ddoc = {
+                    _id: '_design/info',
+                    views: {
+                        by_site: {
+                            map: function (doc) { emit(doc.date); }.toString(),
+                            reduce: '_count'
                         }
-                    });
-                    document.getElementById('loading').style.display = 'none';
-                    var timeline = new vis.Timeline(container, items, groups, options);
+                    }
+                };
+
+                db.put(ddoc).then(function () {
+                    console.log('Created design doc');
+                }).catch(function (err) {
+                    console.log('Error creating design doc - already exists?');
                 });
-            };
+            });
+            var date = new Date();
+            db.get(date.toISOString().split('T')[0]).then(function (resp) {
+                console.log(resp);
+                document.getElementById("about").innerHTML = "<h1>I'm " + names[resp.state].response + " to hear that you've had a " + resp.state + " day</h1>";
+            });
+            timelineFromDocs(db);
+        };
+    </script>
+</head>
 
-            function init() {
-                var db = new PouchDB('howwasyourday');
-                db.get('_design/info').catch(function(err){
-                    console.log(err);
-                    var ddoc = {
-                        _id: '_design/info',
-                        views: {
-                            by_site: {
-                                map: function (doc) { emit(doc.date); }.toString(),
-                                reduce: '_count'
-                            }
-                        }
-                    };
+<body onload="init();">
+    <center>
+        <div id="about">
+            <h1>How was your day?</h1>
+            <p>Mood tracking in a one page, offline app.</p>
+            <form>
+                <button id="good" onclick="record('good')">Good</button>
+                <button id="bad" onclick="record('bad')">Bad</button>
+                <br />
+                <textarea id="more" placeholder="Any more?"></textarea>
+            </form>
+        </div>
+        <div id="visualization"></div>
 
-                    db.put(ddoc).then(function () {
-                        console.log('Created design doc');
-                    }).catch(function (err) {
-                        console.log('Error creating design doc - already exists?');
-                    });
-                });
-                var date = new Date();
-                db.get(date.toISOString().split('T')[0]).then(function (resp){
-                    console.log(resp);
-                    document.getElementById("about").innerHTML = "<h1>I'm " + names[resp.state].response + " to hear that you've had a " + resp.state + " day</h1>";
-                });
-                timelineFromDocs(db);
-            };
-        </script>
-    </head>
-    <body onload="init();">
-        <center>
-            <div id="about">
-                <h1>How was your day?</h1>
-                <p>Mood tracking in a one page, offline app.</p>
-                <form>
-                    <button id="good" onclick="record('good')">Good</button>
-                    <button id="bad" onclick="record('bad')">Bad</button>
-                    <br/>
-                    <textarea id="more" placeholder="Any more?"></textarea>
-                </form>
-            </div>
-            <div id="visualization"></div>
+        <div id="loading">loading...</div>
+        <p>What you record never leaves your device.</p>
+    </center>
 
-            <div id="loading">loading...</div>
-            <p>What you record never leaves your device.</p>
-        </center>
+</body>
 
-    </body>
 </html>

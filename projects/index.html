@@ -1,32 +1,5 @@
 ---
-title: "Miscellaneous things I'm working on, that aren't work"
-layout: default
-categories: projects
+subtitle: "Miscellaneous things I'm working on, that aren't work"
+layout: category
+category: projects
 ---
-
-<div class="home">
-  <h2>{{ page.title}}</h2>
-  <ul class="post-list">
-    {% for post in site.categories.projects %}
-      <li>
-        <h2 class="post-link">
-        {% if post.excerpt == post.content %}
-          {{ post.title }}
-        {% else %}
-          <a href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a>
-        {% endif %}
-        </h2>
-        {{ post.excerpt }}
-        <span class="post-meta">
-          posted {{ post.date | date: "%b %-d, %Y" }}
-          {% if post.tags != empty %}
-          § tagged: {% for tag in post.tags %}
-          {{ tag }}
-          {% endfor %}
-          {% endif %}
-        </span>
-      </li>
-    {% endfor %}
-  </ul>
-
-</div>

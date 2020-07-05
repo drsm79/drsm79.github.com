@@ -1,7 +1,7 @@
 ---
 title: Bitwig & Maschine
 layout: default
-category: music
+categories: music
 tags: controllers, maschine, bitwig
 summary: I recently bought a [Maschine Mikro][] - frankly they're priced so well, and bundle so much software, that they're pretty hard to refuse. I've been looking for ways to get close to the Ableton Live + Push workflow but fused with Bitwig, and I think this might be it (for me).
 ---
