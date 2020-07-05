@@ -1,0 +1,18 @@
+---
+layout: none
+---
+{% assign post_tags = site.posts | map: "tags" %}
+{% assign post_categories = site.posts | map: "categories" %}
+{% assign page_tags = site.pages | map: "tags" %}
+{% assign page_categories = site.pages | map: "categories" %}
+{% assign all_categories = post_categories | concat: page_categories | join: ", " | split : ", " | compact | uniq | sort  %}
+{% assign all_tags = post_tags | concat: page_tags | join: ", " | split : ", " | compact | uniq | sort %}
+{
+    "tags": {
+    {% for tag in all_tags %}{{ tag | jsonify}}: {{site.tags[tag] | map: "url" | jsonify}}{% unless forloop.last %},{% endunless %}
+    {% endfor %}
+    },
+    "categories": {
+    {% for category in all_categories %}{{ category | jsonify}}: {{site.categories[category] | map: "url" | jsonify}}{% unless forloop.last %},{% endunless %}{% endfor %}
+    }
+}
