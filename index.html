@@ -1,26 +1,27 @@
 ---
 layout: default
 ---
-
+<h1 style="color: orangered;">Welcome!</h1>
+<p>Welcome to my corner of the web. A bit of a mix of ephemera, ideas, music and other oddities.</p>
 <div class="home">
   <ul class="post-list">
     {% for post in site.posts %}
-      <li>
-        <h2 class="post-link">
+    <li>
+      <h2 class="post-link">
         {% if post.excerpt == post.content %}
-          {{ post.title }}
+        {{ post.title }}
         {% else %}
-          <a href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a>
+        <a href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a>
         {% endif %}
-        </h2>
-        {{ post.excerpt | markdownify }}
-        <span class="post-meta">
-          <a href="{{ post.url | prepend: site.baseurl }}">posted {{ post.date | date: "%b %-d, %Y" }}</a>
-          {% if post.tags != empty %}
-          § tagged: {{ post.tags | join: ", " }}
-          {% endif %}
-        </span>
-      </li>
+      </h2>
+      {{ post.excerpt | markdownify }}
+      <span class="post-meta">
+        <a href="{{ post.url | prepend: site.baseurl }}">posted {{ post.date | date: "%b %-d, %Y" }}</a>
+        {% if post.tags != empty %}
+        § tagged: {{ post.tags | join: ", " }}
+        {% endif %}
+      </span>
+    </li>
     {% endfor %}
   </ul>
 
@@ -28,9 +29,9 @@ layout: default
   <ul class="post-list">
     {% for post in site.html_pages %}
     {% if post.title %}
-      <li>
-        <a href="{{ post.url| prepend: site.baseurl }}">{{ post.title }}</a>
-      </li>
+    <li>
+      <a href="{{ post.url| prepend: site.baseurl }}">{{ post.title }}</a>
+    </li>
     {% endif %}
     {% endfor %}
   </ul>
