@@ -2,7 +2,7 @@
 title: TriADADAD
 layout: post
 date:   2020-07-02
-categories: projects music
+categories: music
 tags: synths diy sdiy electronics
 ---
 

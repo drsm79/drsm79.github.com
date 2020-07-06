@@ -2,7 +2,7 @@
 title: Mini gig rig
 layout: post
 date:   2020-05-17
-categories: projects music
+categories: music
 tags: synths diy sdiy electronics
 ---
 

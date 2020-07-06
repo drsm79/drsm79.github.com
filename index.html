@@ -8,13 +8,9 @@ layout: default
     {% for post in site.posts %}
     <li>
       <h2 class="post-link">
-        {% if post.excerpt == post.content %}
-        {{ post.title }}
-        {% else %}
         <a href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a>
-        {% endif %}
       </h2>
-      {{ post.excerpt | markdownify }}
+      {{ post.excerpt | strip_html }}
       <span class="post-meta">
         <a href="{{ post.url | prepend: site.baseurl }}">posted {{ post.date | date: "%b %-d, %Y" }}</a>
         {% if post.tags != empty %}

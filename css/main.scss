@@ -31,8 +31,6 @@ $content-width:    900px;
 $on-palm:          600px;
 $on-laptop:        900px;
 
-
-
 // Use media queries like this:
 // @include media-query($on-palm) {
 //     .wrapper {
@@ -54,3 +52,39 @@ $on-laptop:        900px;
         "layout",
         "syntax-highlighting"
 ;
+
+
+.music_player {
+    border: darkorange solid 1px;
+    width: 300px;
+    height: 340px;
+    img {
+        width: 300px;
+        height: 300px;
+    }
+    audio {
+        width: 300px;
+        height: 40;
+    }
+
+}
+ul.horizontal.small {
+    font-size: 66%;
+    li:first-child{
+        color: darkorange;
+    }
+}
+ul.horizontal {
+    margin: 0px;
+    font-size: 80%;
+    display: inline-block;
+    font-variant: small-caps;
+
+    > li {
+        display: inline-block;
+        +li:before {
+            content: ' | ';
+        }
+    }
+}
+

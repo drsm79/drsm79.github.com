@@ -1,0 +1,14 @@
+---
+layout: post
+---
+{{ content }}
+<center>
+    {% if page.soundcloud %}
+    TODO
+    {% elsif page.track %}
+    <div class="music_player">
+        <img src="{{page.track.cover}}" alt="{{page.track.title}}" />
+        <audio src="{{ page.track.mp3 }}" id="{{page.track.title}}" controls></audio>
+    </div>
+    {% endif %}
+</center>

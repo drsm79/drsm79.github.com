@@ -2,7 +2,7 @@
 title: PayID & Cloud Functions live coding Twitch, part 2
 layout: video
 date:   2020-07-03
-categories: projects web
+categories: web
 twitch_id: 668777113
 tags:
     - coding

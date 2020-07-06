@@ -6,9 +6,13 @@ layout: default
   <header class="post-header">
     <h1 class="post-title" itemprop="name headline">{{ page.title }}</h1>
     {% if page.tags != empty %}
-    tagged: {% for tag in page.tags %}
-    {{ tag }}
-    {% endfor %}
+    <ul class="horizontal small">
+      <li>tagged</li>
+      {% for tag in page.tags %}
+      <li>{{ tag | downcase }}</li>
+      {% endfor %}
+      <li>{{ page.date | date_to_string | downcase}}</li>
+    </ul>
     {% endif %}
   </header>
 
@@ -17,11 +21,14 @@ layout: default
   </div>
 
 
-<ul>
+  <ul class="horizontal">
+    <li>posts of a similar ilk</li>
     {% for post in site.categories[page.categories.first] %}
-        {% if post.url != page.url %}
-        <li><a href="{{ post.url }}">{{ post.title }}</a></li>
-        {% endif %}
+    {% if post.url != page.url %}
+    <li><a href="{{ post.url }}"
+        title="{{ post.excerpt | strip_html | truncatewords: 10}} | {{ post.date | date_to_string }}">{{ post.title | downcase }}</a>
+    </li>
+    {% endif %}
     {% endfor %}
-</ul>
+  </ul>
 </article>
