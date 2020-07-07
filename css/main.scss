@@ -66,14 +66,15 @@ $on-laptop:        900px;
         width: 300px;
         height: 40;
     }
-
 }
+
 ul.horizontal.small {
     font-size: 66%;
     li:first-child{
         color: darkorange;
     }
 }
+
 ul.horizontal {
     margin: 0px;
     font-size: 80%;
@@ -88,3 +89,6 @@ ul.horizontal {
     }
 }
 
+strong {
+    font-weight: bold;
+}
