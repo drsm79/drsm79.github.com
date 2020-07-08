@@ -6,9 +6,18 @@ layout: post
     {% if page.soundcloud %}
     TODO
     {% elsif page.track %}
-    <div class="music_player">
+    <div class="music_player" id="player">
         <img src="{{page.track.cover}}" alt="{{page.track.title}}" />
         <audio src="{{ page.track.mp3 }}" id="{{page.track.title}}" controls></audio>
     </div>
     {% endif %}
 </center>
+<script>
+    var player = document.getElementById('player');
+    if (!document.monetization) {
+        console.log(player)
+        var message = document.createElement("div");
+        message.innerHTML = "<p>If you like this track, consider using <a href='https://coil.com'>Coil</a> to support it.</p>";
+        player.parentNode.insertBefore(message, player.nextSibling);
+    }
+</script>
