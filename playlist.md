@@ -63,7 +63,7 @@ layout: default
         container.appendChild(playlist);
         for (let i = 0; i < tracks.length; i++) {
             var entry = document.createElement("li");
-            var link = document.createElement("a");
+            var link = document.createElement("button");
             link.onclick = function(){
                 playTrack(tracks[i]);
             }
