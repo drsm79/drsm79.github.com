@@ -18,7 +18,7 @@ layout: default
         window.open(
             "{{page.url | absolute_url }}",
             "PlaylistPlayer",
-            "resizable=no,scrollbars,status,width=300,height=350"
+            "resizable=no,scrollbars,status,width=300,height="+player.offsetHeight
         ).focus()
     }
     function addMessage(content){
