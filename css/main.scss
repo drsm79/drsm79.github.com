@@ -82,9 +82,10 @@ $on-laptop:        900px;
             list-style-type: none;
             list-style-position: outside;
             li{
-                border: darkorange solid 1px;
+                border-top: darkorange solid 1px;
                 width: 100%;
                 padding: 5px;
+                :nth-child(odd) { background: #ccc; }
             }
         }
     }
@@ -109,7 +110,6 @@ ul.horizontal {
             content: ' | ';
         }
     }
-    li:nth-child(odd) { background: #ccc; }
 }
 
 strong {
