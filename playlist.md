@@ -23,11 +23,12 @@ layout: default
     }
     function addMessage(content){
         var message = document.createElement("div");
+        message.style.cssText = 'font-size: 60%';
         message.innerHTML = content;
         var playlist = document.querySelector('#playlist');
         player.insertBefore(message, playlist);
         var newHeight = player.offsetHeight + message.offsetHeight;
-        player.setAttribute('style', 'height:' + newHeight + 'px');
+        player.style.height = newHeight + 'px';
     }
     function playTrack(track) {
         console.log('playing: ' + track.title)
@@ -63,13 +64,13 @@ layout: default
         container.appendChild(playlist);
         for (let i = 0; i < tracks.length; i++) {
             var entry = document.createElement("li");
-            var link = document.createElement("button");
-            link.onclick = function(){
+            var play = document.createElement("button");
+            play.onclick = function(){
                 playTrack(tracks[i]);
             }
-            link.innerHTML = "play";
+            play.innerHTML = "play";
             content = ' | ' + tracks[i].title;
-            entry.appendChild(link);
+            entry.appendChild(play);
             entry.appendChild(document.createTextNode(content));
             playlist.appendChild(entry);
         }
