@@ -76,6 +76,11 @@ $on-laptop:        900px;
         overflow-y: auto;
         overflow-x: hidden;
         font-size: 0.8em;
+        button {
+            background-color: #444;
+            color: #fff;
+            font-variant: small-caps;
+        }
         ul{
             width: 100%;
             margin: 0px;
