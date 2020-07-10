@@ -11,8 +11,9 @@ email: if you have to ask, you'll never know
 description: > # this means to ignore newlines until "baseurl:"
   Homepage/blog of Simon Metson. An assortment of things appear here over time.
 baseurl: "" # the subpath of your site, e.g. /blog
-url: "http://metsonet.co.uk" # the base hostname & protocol for your site
+url: "https://metsonet.co.uk" # the base hostname & protocol for your site
 twitter_username: drsm79
+coil_username:  drsm79
 github_username:  drsm79
 ilp: "$ilp.uphold.com/Jqz4BEwQQKmp"
 # Build settings

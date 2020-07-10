@@ -6,7 +6,14 @@
         <ul class="contact-list">
           <li>{{ site.title }}</li>
           <li><a href="mailto:{{ site.email }}">{{ site.email }}</a></li>
-          <li><p class="rss-subscribe">subscribe <a href="{{ "/feed.xml" | prepend: site.baseurl }}">via RSS</a></p></li>
+          <li>
+            <p class="rss-subscribe">subscribe <a href="{{ "/feed.xml" | prepend: site.baseurl }}">via RSS</a></p>
+          </li>
+          {% if site.ilp %}
+          <li>
+            {% include icon-payid.html %}
+          </li>
+          {% endif %}
         </ul>
       </div>
 
@@ -21,6 +28,12 @@
           {% if site.twitter_username %}
           <li>
             {% include icon-twitter.html username=site.twitter_username %}
+          </li>
+          {% endif %}
+
+          {% if site.coil_username %}
+          <li>
+            {% include icon-coil.html username=site.coil_username %}
           </li>
           {% endif %}
         </ul>

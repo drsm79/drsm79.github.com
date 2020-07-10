@@ -1,3 +1,5 @@
+---
+---
 {
   "addresses": [
     {
@@ -5,7 +7,7 @@
       "environment": "MAINNET",
       "addressDetailsType": "CryptoAddressDetails",
       "addressDetails": {
-        "address": "$ilp.uphold.com/Jqz4BEwQQKmp"
+        "address": "{{site.ilp}}"
       }
     },
     {
@@ -17,5 +19,5 @@
       }
     }
   ],
-  "payId": "pay$metsonet.co.uk"
+  "payId": "{{page.name}}${{site.url}}"
 }
