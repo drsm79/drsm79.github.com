@@ -12,6 +12,7 @@ layout: post
     </div>
     {% endif %}
 </center>
+
 <script>
     var player = document.getElementById('player');
     if (!document.monetization) {
@@ -20,4 +21,19 @@ layout: post
         message.innerHTML = "<p>If you like this track, consider using <a href='https://coil.com'>Coil</a> to support it.</p>";
         player.parentNode.insertBefore(message, player.nextSibling);
     }
+    const ilps = {{ page.track.ilp | jsonify }};
+    if (ilps) {
+        window.addEventListener('load', () => {
+            const metas = document.getElementsByTagName('meta');
+            for (let i = 0; i < metas.length; i++) {
+                if (metas[i].getAttribute('name') === 'monetization') {
+                    window.setTimeout(() => {
+                        var rnd_ilp = ilps[Math.floor(Math.random() * Math.floor(ilps.length))];
+                        metas[i].content = rnd_ilp;
+                        console.log('now streaming payments to ' + rnd_ilp);
+                    }, 1000);
+                }
+            }
+        });
+    };
 </script>
