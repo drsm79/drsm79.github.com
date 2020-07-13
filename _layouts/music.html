@@ -4,7 +4,15 @@ layout: post
 {{ content }}
 <center>
     {% if page.soundcloud %}
-    TODO
+    <iframe width="100%" height="166" scrolling="no" frameborder="no" allow="autoplay"
+        src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/{{page.soundcloud.id}}&color=%23ff5500&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true"></iframe>
+    <div
+        style="font-size: 10px; color: #cccccc;line-break: anywhere;word-break: normal;overflow: hidden;white-space: nowrap;text-overflow: ellipsis; font-family: Interstate,Lucida Grande,Lucida Sans Unicode,Lucida Sans,Garuda,Verdana,Tahoma,sans-serif;font-weight: 100;">
+        <a href="https://soundcloud.com/simon-metson" title="Simon Metson" target="_blank"
+            style="color: #cccccc; text-decoration: none;">Simon Metson</a>
+        ·
+        <a href="https://soundcloud.com/simon-metson/{{page.soundcloud.name}}" title="{{page.soundcloud.title}}"
+            target="_blank" style="color: #cccccc; text-decoration: none;">{{page.soundcloud.title}}</a></div>
     {% elsif page.track %}
     <div class="music_player" id="player">
         <img src="{{page.track.cover}}" alt="{{page.track.title}}" />
@@ -21,7 +29,11 @@ layout: post
         message.innerHTML = "<p>If you like this track, consider using <a href='https://coil.com'>Coil</a> to support it.</p>";
         player.parentNode.insertBefore(message, player.nextSibling);
     }
+    {% if page.soundcloud.ilp %}
+    const ilps = {{ page.soundcloud.ilp | jsonify }};
+    {% elsif page.track.ilp %}
     const ilps = {{ page.track.ilp | jsonify }};
+    {% endif %}
     if (ilps) {
         window.addEventListener('load', () => {
             const metas = document.getElementsByTagName('meta');
@@ -31,6 +43,11 @@ layout: post
                         var rnd_ilp = ilps[Math.floor(Math.random() * Math.floor(ilps.length))];
                         metas[i].content = rnd_ilp;
                         console.log('now streaming payments to ' + rnd_ilp);
+                        {% if page.track %}
+                        var audio = document.querySelector('audio');
+                        console.log(audio.duration);
+                        console.log(audio.currentTime);
+                        {% endif %}
                     }, 1000);
                 }
             }
