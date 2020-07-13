@@ -11,12 +11,19 @@ layout: default
         <a href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a>
       </h2>
       {{ post.excerpt | strip_html }}
+      <br />
       <span class="post-meta">
-        <a href="{{ post.url | prepend: site.baseurl }}">posted {{ post.date | date: "%b %-d, %Y" }}</a>
+        <a href="{{ post.url | prepend: site.baseurl }}">Posted {{ post.date | date: "%b %-d, %Y" }}</a>
         {% if post.tags != empty %}
-        § tagged: {{ post.tags | join: ", " }}
+        §
         {% endif %}
       </span>
+      <ul class="horizontal small">
+        <li>tagged</li>
+        {% for tag in post.tags %}
+        <li>{{ tag | downcase }}</li>
+        {% endfor %}
+      </ul>
     </li>
     {% endfor %}
   </ul>
