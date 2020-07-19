@@ -29,7 +29,7 @@ This "payment pointer" tells the [Coil][coil] plugin where to direct your microp
 
 So, you've got a payment pointer, what now? Well, this site is generated using [Jekyll][], so the first thing I did was add the "payment pointer" to a new [site variable][] `ilp`. This means I can put {% raw %}`{{site.ilp}}`{% endraw %} anywhere in the site and have the payment pointer show up - handy if I ever want to change it.
 
-Next I want to use tht variable to put the `<meta>` tag on all the pages. Jekyll uses layouts & includes to build the html content of the site, and for this site the html `<head>` is set up in `_includes/head.html`. Heres the full content of that file:
+Next I want to use that variable to put the `<meta>` tag on all the pages. Jekyll uses layouts & includes to build the html content of the site, and for this site the html `<head>` is set up in `_includes/head.html`. Heres the full content of that file:
 
 {% raw %}
 ```html
