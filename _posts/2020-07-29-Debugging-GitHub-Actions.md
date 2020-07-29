@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Debugging GutHub Actions
+title: Debugging GitHub Actions
 categories: web
 tags:
     - github
