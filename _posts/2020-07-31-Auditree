@@ -1,0 +1,11 @@
+---
+layout: post
+title: Auditree: an open source compliance automation framework
+categories: work
+tags:
+    - compliance
+    - automation
+    - cloud
+---
+
+I don't often blog about work stuff here (or anywhere else...), but yesterday my team & I did something I'm quite pleased about: we open sourced a compliance automation framework we've been building for the past three years. You can read more about it on the [Cloudant blog](https://blog.cloudant.com/2020/07/30/compliance-automation-auditree.html) or check out the [project website direct](https://auditree.github.io/). 
