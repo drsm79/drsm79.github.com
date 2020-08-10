@@ -1,7 +1,6 @@
 ---
 layout: post
 ---
-{{ content }}
 <center>
     {% if page.soundcloud %}
     {% include media/soundcloud.html title=page.soundcloud.title name=page.soundcloud.name id=page.soundcloud.id%}
@@ -9,6 +8,11 @@ layout: post
     {% include media/mp3.html title=page.track.title cover=page.track.cover mp3=page.track.mp3%}
     {% endif %}
 </center>
+{{ content }}
+<center>
+    <p>Listen to all tracks on the <a href="/playlist.html">playlist</a>.</p>
+</center>
+
 <script>
     var player = document.getElementById('player');
     if (!document.monetization) {
@@ -31,6 +35,7 @@ layout: post
                         var rnd_ilp = ilps[Math.floor(Math.random() * Math.floor(ilps.length))];
                         metas[i].content = rnd_ilp;
                         console.log('now streaming payments to ' + rnd_ilp);
+                        console.log(ilps);
                         {% if page.track %}
                         var audio = document.querySelector('audio');
                         console.log(audio.duration);
