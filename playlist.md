@@ -66,12 +66,16 @@ layout: default
             var entry = document.createElement("li");
             var play = document.createElement("button");
             play.onclick = function(){
-                playTrack(tracks[i]);
+                playTrack(tracks[i].track);
             }
             play.innerHTML = "play";
-            content = ' | ' + tracks[i].title;
             entry.appendChild(play);
+            content = ' | ';
             entry.appendChild(document.createTextNode(content));
+            var link = document.createElement("a");
+            link.href =  tracks[i].post;
+            link.appendChild(document.createTextNode(tracks[i].track.title));
+            entry.appendChild(link);
             playlist.appendChild(entry);
         }
         var newHeight = player.offsetHeight + container.offsetHeight + 10;
@@ -81,15 +85,18 @@ layout: default
     var position = 0;
     var tracks = [{% for page in site.posts %}
     {% if page.track %}
-    {{ page.track | jsonify }} {% unless forloop.last %}, {% endunless %}
+    {
+        "track": {{ page.track | jsonify }},
+        "post": {{ page.url  | jsonify }}
+    }{% unless forloop.last %}, {% endunless %}
     {% endif %}
     {% endfor %}]
-
+    console.log(tracks);
     audio.addEventListener('ended', (event) => {
         position += 1;
         if (position >= tracks.length) { position = 0 };
-        console.log('Up next: ' + tracks[position].title);
-        playTrack(tracks[position]);
+        console.log('Up next: ' + tracks[position].track.title);
+        playTrack(tracks[position].track);
     });
 
     window.setTimeout(function(event){
@@ -99,7 +106,7 @@ layout: default
             doMonetise();
         }
         renderPlaylist(tracks);
-        playTrack(tracks[position]);
+        playTrack(tracks[position].track);
     }, 5
     )
 </script>
