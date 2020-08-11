@@ -4,6 +4,8 @@ layout: post
 <center>
     {% if page.soundcloud %}
     {% include media/soundcloud.html title=page.soundcloud.title name=page.soundcloud.name id=page.soundcloud.id%}
+    {% elsif page.bandcamp %}
+    {% include media/bandcamp.html album=page.bandcamp.album link=page.bandcamp.link title=page.bandcamp.title %}
     {% elsif page.track %}
     {% include media/mp3.html title=page.track.title cover=page.track.cover mp3=page.track.mp3%}
     {% endif %}
@@ -21,11 +23,8 @@ layout: post
         message.innerHTML = "<p>If you like this track, consider using <a href='https://coil.com'>Coil</a> to support it.</p>";
         player.parentNode.insertBefore(message, player.nextSibling);
     }
-    {% if page.soundcloud.ilp %}
-    const ilps = {{ page.soundcloud.ilp | jsonify }};
-    {% elsif page.track.ilp %}
-    const ilps = {{ page.track.ilp | jsonify }};
-    {% endif %}
+
+    const ilps = {{ page.ilp | default: site.ilp | jsonify }};
     if (ilps) {
         window.addEventListener('load', () => {
             const metas = document.getElementsByTagName('meta');
