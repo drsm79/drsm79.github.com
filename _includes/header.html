@@ -18,8 +18,18 @@
 
       <div class="trigger">
         {% for category in site.categories %}
-        <a class="page-link" href="/categories#{{ category | first | slugize }}">{{ category | first | capitalize}}</a>
+        {% assign names = names |append: category.first | append: ", " %}
         {% endfor %}
+        {% assign names = names | append: "misc." %}
+        {% assign names = names | split: ", " | sort %}
+        {% for category_name in names %}
+        {% if site.categories[category_name].size > 3 %}
+        <a class="page-link" href="/categories#{{ category_name | slugize }}">{{ category_name | capitalize}}</a>
+        {% elsif category_name == "misc." %}
+        <a class="page-link" href="/categories#{{ category_name | slugize }}">{{ category_name | capitalize}}</a>
+        {% endif %}
+        {% endfor %}
+
       </div>
     </nav>
 

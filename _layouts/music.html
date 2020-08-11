@@ -11,10 +11,11 @@ layout: post
     {% endif %}
 </center>
 {{ content }}
+{%if page.track %}
 <center>
-    <p>Listen to all tracks on the <a href="/playlist.html">playlist</a>.</p>
+    <p>Listen to other tracks on the <a href="/playlist.html">playlist</a>.</p>
 </center>
-
+{% endif %}
 <script>
     var player = document.getElementById('player');
     if (!document.monetization) {
