@@ -5,6 +5,7 @@ categories: music
 ilp: $ilp.uphold.com/6LkizhgpBj94
 bandcamp:
     album: 2486622710
+    track: 3947368885
     link: http://chrisfoster1.bandcamp.com/album/hadelin
     title: Hadelin by Chris Foster
 tags:

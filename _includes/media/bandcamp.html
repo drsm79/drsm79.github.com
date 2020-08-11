@@ -1,5 +1,8 @@
 <center>
-    <iframe style="border: 0; width: 600px; height: 720px;"
+    <iframe style="border: 0; width: 600px; height: 720px;" {%if include.track %}
+        src="https://bandcamp.com/EmbeddedPlayer/album={{include.album}}/track={{include.track}}/size=large/bgcol=ffffff/linkcol=0687f5/tracklist=false/transparent=true/"
+        {% else %}
         src="https://bandcamp.com/EmbeddedPlayer/album={{include.album}}/size=large/bgcol=ffffff/linkcol=0687f5/tracklist=false/transparent=true/"
-        seamless><a href="{{include.link}}">{{include.title}}</a></iframe>
+        {% endif %} seamless>
+        <a href="{{include.link}}">{{include.title}}</a></iframe>
 </center>

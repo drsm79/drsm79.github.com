@@ -5,7 +5,7 @@ layout: post
     {% if page.soundcloud %}
     {% include media/soundcloud.html title=page.soundcloud.title name=page.soundcloud.name id=page.soundcloud.id%}
     {% elsif page.bandcamp %}
-    {% include media/bandcamp.html album=page.bandcamp.album link=page.bandcamp.link title=page.bandcamp.title %}
+    {% include media/bandcamp.html album=page.bandcamp.album track=page.bandcamp.track link=page.bandcamp.link title=page.bandcamp.title %}
     {% elsif page.track %}
     {% include media/mp3.html title=page.track.title cover=page.track.cover mp3=page.track.mp3%}
     {% endif %}
