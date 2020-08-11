@@ -7,8 +7,8 @@ track:
     mp3: /music/absolutely.mp3
     cover: /images/shocking.png
     title: Absolutely shocking and lacking in taste
-    ilp:
-        - $ilp.uphold.com/Zbkka79NKg6Y
+ilp:
+    - $ilp.uphold.com/Zbkka79NKg6Y
 tags:
     - minimal
     - modular

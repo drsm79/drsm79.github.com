@@ -7,8 +7,8 @@ track:
     mp3: /music/departures_and_beginnings.mp3
     cover: /images/graf_whale.jpg
     title: Departures & beginnings
-    ilp:
-        - $ilp.uphold.com/P3ZqhMBkzriR
+ilp:
+    - $ilp.uphold.com/P3ZqhMBkzriR
 tags:
     - lofi hiphop
     - brass band
