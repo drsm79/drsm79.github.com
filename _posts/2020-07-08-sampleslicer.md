@@ -4,7 +4,7 @@ layout: video
 cinnamon_id: 359301009966630293
 date:
  2020-07-08
-categories: music
+categories: sdiy
 tags: synths diy sdiy electronics commissions
 ---
 
