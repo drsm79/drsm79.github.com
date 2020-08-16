@@ -26,7 +26,7 @@ layout: post
     }
 
     const ilps = {{ page.ilp | default: site.ilp | jsonify }};
-    if (ilps) {
+    if (ilps && Array.isArray(ilps)) {
         window.addEventListener('load', () => {
             const metas = document.getElementsByTagName('meta');
             for (let i = 0; i < metas.length; i++) {
