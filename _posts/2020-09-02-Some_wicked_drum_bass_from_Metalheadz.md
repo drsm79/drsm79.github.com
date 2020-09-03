@@ -1,0 +1,10 @@
+---
+layout: music
+category: playlists
+title: Some wicked drum & bass from Metalheadz
+spotify:
+    id: 6ZXvVgauWD1313Y9TvXTzT
+    type: playlist
+---
+
+I've found myself listening to a bit more drum & bass lately, and this playlist from Metlheadz has been getting a fair rinsing.
