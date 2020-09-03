@@ -19,5 +19,7 @@ ilp: "$ilp.uphold.com/Jqz4BEwQQKmp"
 # Build settings
 markdown: kramdown
 
-exclude: [CNAME]
+exclude:
+  - CNAME
+  - makepost.py
 timezone: Europe/London
