@@ -7,4 +7,4 @@ spotify:
     type: playlist
 ---
 
-I've found myself listening to a bit more drum & bass lately, and this playlist from Metlheadz has been getting a fair rinsing.
+I've found myself listening to a bit more drum & bass lately, and this playlist of new releases from Metalheadz has been getting a fair rinsing.
