@@ -8,6 +8,8 @@ layout: post
     {% include media/bandcamp.html album=page.bandcamp.album track=page.bandcamp.track link=page.bandcamp.link title=page.bandcamp.title %}
     {% elsif page.track %}
     {% include media/mp3.html title=page.track.title cover=page.track.cover mp3=page.track.mp3%}
+    {% elsif page.spotify %}
+    {% include media/spotify.html id=page.spotify.id type=page.spotify.type %}
     {% endif %}
 </center>
 {{ content }}
