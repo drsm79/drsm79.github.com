@@ -4,7 +4,8 @@ layout: page
 no_monetize: True
 ---
 
-An iframe without webmonetization on the container.
+An iframe without webmonetization on the container, which "gets" the ilp from the iframe.
+
 <center>
-    <iframe src="/playlist" width="300" height="600"></iframe>
+    <script playlist="/playlist" container='playlist' src='/playlist_embed.js'></script>
 </center>

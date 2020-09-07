@@ -15,6 +15,12 @@ ilp: $ilp.uphold.com/iEfixMhH9dmp
     var player = document.getElementById('player');
     var cover = player.querySelector('img');
     var audio = player.querySelector('audio');
+    if ( window.location !== window.parent.location ) {
+        // The page is in an iframe
+        var data = {"playlist-ilp": "{{ page.ilp }}"};
+        console.log(data);
+        parent.postMessage(data, "*");
+    }
     function openPopout(){
         audio.pause();
         window.open(
