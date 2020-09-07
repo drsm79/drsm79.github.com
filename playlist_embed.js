@@ -29,4 +29,6 @@ const iframe = document.createElement('iframe');
 iframe.src = url;
 iframe.width = width;
 iframe.height = height;
+iframe.frameborder = "no";
+iframe.allow = "autoplay";
 document.currentScript.after(iframe);
