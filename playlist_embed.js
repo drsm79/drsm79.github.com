@@ -7,7 +7,7 @@ window.addEventListener("message", function (event) {
             if (metas[i].getAttribute('name') === 'monetization') {
                 metas[i].content = ilp;
                 not_done = false;
-                console.log("set ilp to " + ilp);
+                console.log("set ilp to " + ilp + " via event.");
             }
         }
         if (not_done) {
@@ -15,7 +15,7 @@ window.addEventListener("message", function (event) {
             monetizationTag.name = 'monetization';
             monetizationTag.content = ilp;
             document.head.appendChild(monetizationTag);
-            console.log("added meta & set ilp to " + ilp);
+            console.log("added meta & set ilp to " + ilp + " via event.");
         }
     }
 });

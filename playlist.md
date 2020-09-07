@@ -15,12 +15,13 @@ ilp: $ilp.uphold.com/iEfixMhH9dmp
     var player = document.getElementById('player');
     var cover = player.querySelector('img');
     var audio = player.querySelector('audio');
-    if ( window.location !== window.parent.location ) {
-        // The page is in an iframe
-        var data = {"playlist-ilp": "{{ page.ilp }}"};
-        console.log(data);
-        parent.postMessage(data, "*");
+    function sendILPToParent(ilp){
+        if ( window.location !== window.parent.location ) {
+            var data = {"playlist-ilp": ilp};
+            parent.postMessage(data, "*");
+        }
     }
+    sendILPToParent("{{ page.ilp }}");
     function openPopout(){
         audio.pause();
         window.open(
@@ -38,12 +39,28 @@ ilp: $ilp.uphold.com/iEfixMhH9dmp
         var newHeight = player.offsetHeight + message.offsetHeight;
         player.style.height = newHeight + 'px';
     }
+    function changeILP(ilp){
+        const metas = document.getElementsByTagName('meta');
+        for (let i = 0; i < metas.length; i++) {
+            if (metas[i].getAttribute('name') === 'monetization') {
+                metas[i].content = ilp;
+            }
+        }
+        sendILPToParent(ilp);
+        console.log('now streaming payments to ' + ilp);
+    }
     function playTrack(track) {
-        console.log('playing: ' + track.title)
-        cover.src = track.cover;
-        cover.alt = track.title;
-        audio.src = track.mp3;
-        audio.id = track.title;
+        console.log('playing: ' + track.track.title);
+        cover.src = track.track.cover;
+        cover.alt = track.track.title;
+        audio.src = track.track.mp3;
+        audio.id = track.track.title;
+        ilps = track.ilp;
+        var the_ilp = ilps;
+        if (Array.isArray(ilps)) {
+            the_ilp = ilps[Math.floor(Math.random() * Math.floor(ilps.length))];
+        }
+        changeILP(the_ilp);
         if (audio.paused || !audio.currentTime) {
             audio.play();
         }
@@ -74,7 +91,7 @@ ilp: $ilp.uphold.com/iEfixMhH9dmp
             var entry = document.createElement("li");
             var play = document.createElement("button");
             play.onclick = function(){
-                playTrack(tracks[i].track);
+                playTrack(tracks[i]);
             }
             play.innerHTML = "play";
             entry.appendChild(play);
@@ -82,6 +99,7 @@ ilp: $ilp.uphold.com/iEfixMhH9dmp
             entry.appendChild(document.createTextNode(content));
             var link = document.createElement("a");
             link.href =  tracks[i].post;
+            link.target = '_top';
             link.appendChild(document.createTextNode(tracks[i].track.title));
             entry.appendChild(link);
             playlist.appendChild(entry);
@@ -95,16 +113,16 @@ ilp: $ilp.uphold.com/iEfixMhH9dmp
     {% if page.track %}
     {
         "track": {{ page.track | jsonify }},
-        "post": {{ page.url  | jsonify }}
+        "post": {{ page.url  | jsonify }},
+        "ilp": {{ page.ilp | jsonify }}
     }{% unless forloop.last %}, {% endunless %}
     {% endif %}
     {% endfor %}]
-    console.log(tracks);
     audio.addEventListener('ended', (event) => {
         position += 1;
         if (position >= tracks.length) { position = 0 };
         console.log('Up next: ' + tracks[position].track.title);
-        playTrack(tracks[position].track);
+        playTrack(tracks[position]);
     });
 
     window.setTimeout(function(event){
@@ -114,7 +132,7 @@ ilp: $ilp.uphold.com/iEfixMhH9dmp
             doMonetise();
         }
         renderPlaylist(tracks);
-        playTrack(tracks[position].track);
+        playTrack(tracks[position]);
     }, 5
     )
 </script>
