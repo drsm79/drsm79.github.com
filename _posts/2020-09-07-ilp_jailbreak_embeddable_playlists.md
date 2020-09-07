@@ -11,7 +11,7 @@ I've been building a [web monetized music platform][webmon], in my copious spare
 - can "pop out" into its own window
 - prompts about [Coil][coil] if not enabled
 
-The next thing I wanted to do with it was have it be embedable, such that someone could put the playlist on their own page. Doing tht with a simple `<iframe>` is easy enough, but there's a sticking point. The whole point of this is to have the music be web monetized, and Coil's plugin (quite reasonably) blocks an `<iframe>` from requesting payment - I suspect because if this wasn't the case, one page could end up with hundreds of streams of payment, which would make everything complicated. This could make it easier for people to [hijack payments](https://github.com/WICG/webmonetization/issues/96), too.
+The next thing I wanted to do with it was have it be embedable, such that someone could put the playlist on their own page. Doing that with a simple `<iframe>` is easy enough, but there's a sticking point. The whole point of this is to have the music be web monetized, and Coil's plugin (quite reasonably) blocks an `<iframe>` from requesting payment - I suspect because if this wasn't the case, one page could end up with hundreds of streams of payment, which would make everything complicated. This could make it easier for people to [hijack payments](https://github.com/WICG/webmonetization/issues/96), too.
 
 So, this got me thinking. I wanted a simple (as in few character long) embed code that people could use (Bandcamp et. al use `<iframe>`), but also have the content set the ILP for the track playing, which means having a way to "jailbreak" the ILP pointer out of the `<iframe>`. Instead of a simple `<iframe>`, could this be done with a `<script>` (spoiler; yes, yes it could).
 
