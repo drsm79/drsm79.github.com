@@ -1,0 +1,114 @@
+<!doctype html>
+<html>
+
+<head>
+  <meta charset=utf-8 />
+  {% unless page.no_monetize %}
+  <meta name="monetization" content="{{ page.ilp | default: site.ilp}}">
+  {% endunless %}
+  <title> {% if page.title %} {{ page.title }} | {% endif %} CV</title>
+  <link href="css/cv/{{ site.style | default: "davewhipp" }}-screen.css" type="text/css" rel="stylesheet"
+    media="screen">
+  <link href="css/cv/{{ site.style | default: "davewhipp" }}-print.css" type="text/css" rel="stylesheet" media="print">
+  <link rel="stylesheet" href="{{ "/css/main.css" | prepend: site.baseurl }}">
+  <style>
+    h2+p,
+    h3+p {
+      margin-top: -18px;
+    }
+
+    h3+h4+p {
+      margin-top: -59px;
+    }
+
+    h4+p {
+      margin-top: -36px;
+    }
+
+    h2 {
+      font-size: 26px;
+    }
+
+    h2:first-of-type {
+      display: none;
+    }
+
+    h2:first-of-type+p {
+      left: 10%;
+      width: 85%;
+      padding-top: 1em;
+    }
+
+    h2:first-of-type+p+p {
+      left: 10%;
+      width: 85%;
+      border-bottom: 1px solid lightslategray;
+      padding-bottom: 1em;
+    }
+
+    h3 {
+      font-size: 20px;
+    }
+
+    li:before {
+      content: ' - ';
+      list-style-position: inside;
+    }
+
+    h4 {
+      font-size: 20px;
+      font-family: "League Fanwood", "Helvetica Neue", Helvetica, Arial, sans-serif;
+      text-align: right;
+      position: relative;
+      top: .7em;
+      text-align: right;
+      width: 20%;
+    }
+
+    h1 {
+      text-align: center;
+      width: 100%;
+      left: 0;
+    }
+
+    h1+ul {
+      margin-left: 0px;
+      text-align: center;
+      width: 100%;
+      left: 0;
+    }
+
+    h1+ul>li:before {
+      content: '';
+    }
+
+    h1+ul>li {
+      display: inline-block;
+      zoom: 1;
+      *display: inline;
+    }
+
+    h1+ul>li+li:before {
+      content: ' | ';
+    }
+
+    ul {
+      padding-bottom: 1em;
+      width: 55%;
+    }
+
+    strong {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="main">
+    <div id="content">
+      {{ content }}
+    </div>
+  </div>
+</body>
+
+</html>
