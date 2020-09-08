@@ -2,6 +2,13 @@
 layout: post
 category: web
 title: Embeddable playlists & the ILP jailbreak
+tags:
+    - javascript
+    - micropayments
+    - xrp
+    - web monetisation
+    - streaming
+    - embedding
 ---
 
 I've been building a [web monetized music platform][webmon], in my copious spare time. You may have even [heard][better] [some][pianos] [of it][shocking]. One thing I added a while back to this site is a [playlist][], built from all the posts that have direct link to a track, as opposed to one hosted on Bandcamp, Soundcloud or Spotify. That was nice, and it does a couple of cute things:
