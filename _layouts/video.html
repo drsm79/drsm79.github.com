@@ -1,7 +1,11 @@
 ---
 layout: post
 ---
+
+{% unless page.video_top %}
 {{ content }}
+{% endunless %}
+
 <center>
     {% if page.video_url %}
     {% assign video_url = page.video_url %}
@@ -13,6 +17,11 @@ layout: post
     <iframe src="{{ video_url }}" frameborder="0" allowfullscreen="true" scrolling="no" height="378"
         width="620"></iframe>
 </center>
+
+{% if page.video_top %}
+{{ content }}
+{% endif %}
+
 <script>
     var player = document.querySelector('iframe');
     if (!document.monetization) {
