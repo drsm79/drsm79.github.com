@@ -6,18 +6,14 @@ layout: post
 {{ content }}
 {% endunless %}
 
-<center>
-    {% if page.video_url %}
-    {% assign video_url = page.video_url %}
-    {% elsif page.cinnamon_id %}
-    {% assign video_url = page.cinnamon_id | prepend: "https://www.cinnamon.video/embed?v="%}
-    {% elsif page.twitch_id %}
-    {% assign video_url = page.page.twitch_id | prepend: "https://player.twitch.tv/?parent=metsonet.co.uk&ampvideo="%}
-    {% endif %}
-    <iframe src="{{ video_url }}" frameborder="0" allowfullscreen="true" scrolling="no" height="378"
-        width="620"></iframe>
-</center>
-
+{% if page.video_url %}
+{% assign video_url = page.video_url %}
+{% elsif page.cinnamon_id %}
+{% assign video_url = page.cinnamon_id | prepend: "https://www.cinnamon.video/embed?v="%}
+{% elsif page.twitch_id %}
+{% assign video_url = page.page.twitch_id | prepend: "https://player.twitch.tv/?parent=metsonet.co.uk&ampvideo="%}
+{% endif %}
+{% include media/video.html video_url=video_url %}
 {% if page.video_top %}
 {{ content }}
 {% endif %}

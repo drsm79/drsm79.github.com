@@ -23,3 +23,7 @@ The second appearance happened this morning. Matt spotted a [GitHub hackathon](h
 <blockquote class="twitter-tweet"><p lang="en" dir="ltr">I did! :)<br><br>Wooohooo!!!! <a href="https://t.co/pikwh54qJc">pic.twitter.com/pikwh54qJc</a></p>&mdash; Matt Hamilton (@HammerToe) <a href="https://twitter.com/HammerToe/status/1306562876644233220?ref_src=twsrc%5Etfw">September 17, 2020</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 
 I have to say, he seems very surprised that it works! ;)
+
+You can watch the full stream below.
+
+{% include media/video.html video_url='https://cinnamon.video/watch?v=410918564657104239' %}
