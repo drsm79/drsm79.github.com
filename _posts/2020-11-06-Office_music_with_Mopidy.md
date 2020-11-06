@@ -58,7 +58,7 @@ ctl.!default {
 }
 ```
 
-Onec configured, you can verify with `aplay /usr/share/sounds/alsa/Front_Center.wav`.
+Once configured, you can verify with `aplay /usr/share/sounds/alsa/Front_Center.wav`. I found this to be a [useful reference](https://www.alsa-project.org/wiki/Asoundrc) for Alsa.
 
 You can also do this in the mopdiy config file `/etc/mopidy/mopidy.conf` (for example, if you wanted mopidy to use a different device to the default):
 
