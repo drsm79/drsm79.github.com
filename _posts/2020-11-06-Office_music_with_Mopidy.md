@@ -8,7 +8,7 @@ tags:
   - lockdown
 title: Office music with Mopidy
 ---
-Since lockdown began in March (it was March, wasn't it?) I've been working from home. This too a while to get used to - my short drive to/from the office put my brain in gear - but is now "the new normal".
+Since lockdown began in March (it was March, wasn't it?) I've been working from home. This took a while to get used to - my short drive to/from the office put my brain in gear - but is now "the new normal".
 
 One of the little benefits of working from home is that I can listen to music more. I don't much like wearing headphones, especially not all day, so when in the office I don't usually listen to music. But at home I have a stereo and can put on tunes to my hearts content (currently listening to Bill Callahan's "Gold Record").
 
@@ -16,7 +16,7 @@ I have tried a few variations on the theme of "Spotify going into the stereo", u
 
 > Mopidy plays music from local disk, Spotify, SoundCloud, TuneIn, and more. You can edit the playlist from any phone, tablet, or computer using a variety of MPD and web clients
 
-The pi is a great piece of kit, and Mopidy is a nicely written bit of software that's easily installed and configured. It means I can line up tracks, "discover" them etc. and just have a nice stream of music coming into my earholes.
+The pi is a great piece of kit, and Mopidy is a nicely written bit of software that's easily installed and configured. It means I can line up tracks, "discover" them etc. and just have a nice stream of music coming into my earholes. I have vague hopes of plumbing in [Audiotarky](https://audiotarky.com) one day.
 
 I've had to prod Alsa a few times, it seems a recent update (or possibly me plugging something in differently) has made the soundcard device move around a bit. Not to worry, this can be configured in `/etc/asound.conf`.
 
