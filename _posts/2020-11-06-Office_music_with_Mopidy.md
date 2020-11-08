@@ -46,7 +46,7 @@ card 3: sndrpihifiberry [snd_rpi_hifiberry_dac], device 0: HifiBerry DAC HiFi pc
 
 I want to use the `Headphones` device, so my `/etc/asound` looks like:
 
-```
+```sh
 pcm.!default {
        type hw
        card Headphones
@@ -58,20 +58,11 @@ ctl.!default {
 }
 ```
 
-Once configured, you can verify with `aplay /usr/share/sounds/alsa/Front_Center.wav`. I found this to be a [useful reference](https://www.alsa-project.org/wiki/Asoundrc) for Alsa.
-
-You can also do this in the mopdiy config file `/etc/mopidy/mopidy.conf` (for example, if you wanted mopidy to use a different device to the default):
-
-```ini
-[audio]
-mixer_volume = 100
-output = alsasink
-device=hw:Headphones
-```
+Once configured, you can verify with `aplay /usr/share/sounds/alsa/Front_Center.wav`.
 
 Once you've got the config how you want, restart mopidy:
 
-```
+```sh
 sudo systemctl restart mopidy
 sudo systemctl status mopidy
 ```
