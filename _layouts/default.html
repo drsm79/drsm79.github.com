@@ -25,6 +25,12 @@
       };
     });
   </script>
+  {% for script in page.scripts %}
+  <script src="{{ script }}" defer></script>
+  {% endfor %}
+  {% for script in layout.scripts %}
+  <script src="{{ script }}" defer></script>
+  {% endfor %}
 </body>
 
 </html>
