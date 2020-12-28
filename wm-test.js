@@ -8,7 +8,9 @@ function logMessage(message, event) {
     li.textContent = message;
     if (event) {    
         console.log(payment_sum, event.detail.amount);
-        payment_sum += event.detail.amount;
+        if (event.detail.amount){
+            payment_sum += event.detail.amount;
+        }
         let pre = document.createElement("pre");
         let code = document.createElement("code");
         code.textContent = JSON.stringify(event.detail, null, 2);
