@@ -1,10 +1,12 @@
-console.log(document.monetization);
+var progress_done = 0;
+var pending_done = 0;
+var payment_sum = 0;
 
 function logMessage(message, event) {
     console.log(message);
     let li = document.createElement("li");
     li.textContent = message;
-
+    payment_sum += event.amount;
     if (event) {
         let pre = document.createElement("pre");
         let code = document.createElement("code");
@@ -20,9 +22,6 @@ if (document.monetization) {
 } else {
     logMessage('Browser does not support WebMonetization');
 }
-
-var progress_done = 0;
-var pending_done = 0;
 
 function startEventHandler(event) {
     let message = "WM started: ";
@@ -52,6 +51,8 @@ function progressEventHandler(event) {
     }
     if (progress_done >= 100) {
         document.monetization.removeEventListener('monetizationprogress', progressEventHandler);
+        message = 'WM sent ' + payment_sum + ' in ' + progress_done + ' iterations.';
+        logMessage(message);
     }
 }
 
