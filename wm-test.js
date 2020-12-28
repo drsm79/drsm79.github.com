@@ -9,7 +9,7 @@ function logMessage(message, event) {
     if (event) {    
         console.log(payment_sum, event.detail.amount);
         if (event.detail.amount){
-            payment_sum += event.detail.amount;
+            payment_sum += parseInt(event.detail.amount);
         }
         let pre = document.createElement("pre");
         let code = document.createElement("code");
