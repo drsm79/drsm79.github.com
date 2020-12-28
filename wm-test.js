@@ -45,12 +45,12 @@ function progressEventHandler(event) {
     if (progress_done < 6) {
         logMessage(message, event);
     }
-    if (progress_done < 100) {
+    if (progress_done <= 100) {
         if (progress_done % 10 === 0) {
             logMessage(message, event);
         }
     }
-    if (progress_done === 100) {
+    if (progress_done >= 100) {
         document.monetization.removeEventListener('monetizationprogress', progressEventHandler);
     }
 }
