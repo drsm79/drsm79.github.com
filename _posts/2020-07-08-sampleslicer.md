@@ -51,9 +51,6 @@ Top tip time! Use masking tape to keep LEDs in place & level with the panel. Esp
 ### Fin
 <center>
 
-<img alt="One Sampleslicer!" src="//images/sampleslicer/RenderedImage.JPG"/>
+<img alt="One Sampleslicer!" src="/images/sampleslicer/RenderedImage.JPG"/>
 
 </center>
-
-
-[Sampleslicer]: https://www.ginkosynthese.com/product/1207513/sampleslicer-mkii-diy-kit
