@@ -1,7 +1,5 @@
 ---
 title: "Commissioned build: a Sampleslicer for Ian"
-layout: video
-cinnamon_id: 359301009966630293
 date:
  2020-07-08
 categories: sdiy
@@ -54,3 +52,5 @@ Top tip time! Use masking tape to keep LEDs in place & level with the panel. Esp
 <img alt="One Sampleslicer!" src="/images/sampleslicer/RenderedImage.JPG"/>
 
 </center>
+
+[Sampleslicer]: https://www.ginkosynthese.com/product/1207513/sampleslicer-mkii-diy-kit
