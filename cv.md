@@ -29,7 +29,7 @@ Worked in academic, VC, PE & publicly traded environments, and have a good under
 
 #### 2020 - 2026
 
-Current Role: SVP Engineering
+SVP Engineering (Promoted: Senior Director → VP in 2022 → SVP in 2024)
 
  - Managed rapidly growing line of business in the $10-100M TCV range
  - Defined product strategy and technical architecture with peers & team for "leading" Multimodel Data Platform as assessed by Forrester
@@ -100,8 +100,10 @@ Range of roles in small, rapidly growing start up:
 #### 1998 - 2002
 
 **MPhys (Master of Physics and the Universe)**
-- Final projects: Fortran simulation of the Earth's geodynamo; solving quantum wave equations with genetic algorithms.
-- Freelance web developer (ASP & front-end systems).
+ * Final year projects:
+   * "Fortran simulation of the Earth's geodynamo"
+   * "Solving quantum wave equations with genetic algorithms."
+* Freelance web developer (ASP & front-end systems).
 
 ## Personal
 I live in Bristol with my wife, two children, dog & ever growing instrument collection.
