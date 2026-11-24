@@ -34,7 +34,7 @@ Current Role: SVP Engineering
  - Managed rapidly growing line of business in the $10-100M TCV range
  - Defined product strategy and technical architecture with peers & team for "leading" Multimodel Data Platform as assessed by Forrester
  - Consistent on time, on budget delivery of key product feature/function in both SaaS and on premise software
- - Helped scale out AI adoption within engineering team, including project managers & delivered useful AI products to market
+ - Enabled scale out AI adoption within engineering team, including project managers & instrumental in delivering useful AI products to market
  - Mentored techincal and non-technical staff at all levels of experience
  - Grew, reskilled and contracted team, hiring ~60 people during the pandemic
  - Built & launched DBaaS product in 9 months, rapidly taken through succesful SOC2 & PCI audits over the course of the following year
@@ -48,11 +48,11 @@ Current Role: SVP Engineering
 Program Director
 
 - Responsibilities across Cloudant, Compose & IBM Cloud Databases offerings. These are mission critical services for both IBM Cloud & its customers.
-- Helped define the structure & organisation of the business unit to meet business & technical goals.
-- Help set direction of the product, negotiating with stakeholders across the offering, BU & broader business.
+- Led collaborative definition of the structure & organisation of the business unit to meet business & technical goals.
+- Collaborated on defining direction of the product, negotiating with stakeholders across the offering, BU & broader business.
 - Led compliance automation efforts for IBM Cloud, including liaising with external auditors, NIST & IBM Research. This has been open sourced at [https://auditree.github.io/](https://auditree.github.io/).
 - Managed and mentored staff from across the immediate and broader organisation, at various levels of seniority (interns through to peers).
-- Helped the Cloudant acquisition integrate with IBM - technically, organisationally & culturally.
+- Enabled the Cloudant acquisition integration with IBM - technically, organisationally & culturally.
 - Offering manager for the launch of IBM Graph service.
 - Led R&D efforts around using Kubernetes for novel deployments of Cloudant.
 - Liaise with European Sales leadership on strategy, hiring & go-to-market.
@@ -61,54 +61,47 @@ Program Director
 
 #### 2012 - 2014
 
-Acquired by IBM
+Engineering & Product Lead *(Acquired by IBM)*
 
 Range of roles in small, rapidly growing start up:
 
-- Product management.
+- Versatile leadership across engineering, product management, and operations in a hyper-growth distributed database startup.
 - Engineering contributions across the stack & SDLC
 - Front end development for CouchDB, resulted in being made a committer on Apache CouchDB
 - Ops on call & Support on call
-- Supported sales engineering
-- Developer advocacy, including blogs & speaking at various conferences (All Your Base, QCon etc.) & representing Cloudant at trade shows
+- Partnered with sales engineering on pre- & post- sale activities; architecture, customer pilots, customer on boarding & long term success.
+- Directed developer advocacy: authored technical blogs, represented Cloudant at trade shows, and spoke at major conferences (QCon, All Your Base).
 
 ### Bristol University
 
 #### 2006 - 2012
 
-**Research Assistant & Research Associate**
+**Research Associate & Group Convener (CERN / CMS)**
 
-Convened the Data & Workflow Management group.
-- Team of ~50 spread around the world (UK, US, Italy, Spain, Switzerland).
-- Responsible for mission critical processing, transfer & bookkeeping of CMS experiment data (10PB/year).
+- Convened the worldwide Data & Workflow Management group (~50 engineers and researchers across the UK, US, France, Italy, Spain, and Switzerland).
+- Accountable for mission-critical processing, global data transfer, and bookkeeping for CMS experiment data at CERN (~10 PB/year).
+- Built prototype of the global data management system (PhEDEx) managing multi-petabyte datasets across 100+ laboratories worldwide.
+- Tested high-throughput storage software for the UK "Tier-1" Rutherford Appleton Laboratory and ran performance evaluations across the UK academic network backbone.
+- Procured, deployed, and administered department data center hardware.
+- Organized invite-only "Bristol Big Data Days" bringing together researchers and leaders from industry and government (HP Labs, GCHQ, etc.).
 
-Ran invite only "Bristol Big Data Days" with people from HP Labs, GCHQ etc.
+## Education
+
+### Bristol University
 
 #### 2002 - 2006
 
-**PhD student**
-
-Thesis: “Invisible Decays of the Higgs Boson at the Compact Muon Solenoid
-Detector”, funded through e-Science PPARC grant.
-
-- Worked in Compact Muon Solenoid (CMS) data management team, built prototype of data
-management system (PhEDEx) to manage multiple petabytes of data at 100+ laboratories worldwide
-- Tested storage software for “Tier 1” UK Lab (Rutherford Appleton Laboratory) & ran network performance testing of UK academic network
-- Procured & built hardware for department data centre
+**PhD in Particle Physics & Distributed Computing**
+- Thesis: *“Invisible Decays of the Higgs Boson at the Compact Muon Solenoid Detector”*
+- Funded through e-Science PPARC grant; prototype developer for the CMS global data grid.
 
 ### Reading University
 
 #### 1998 - 2002
 
-MPhysUn - Master of Physics & the Universe
-- Final projects:
-   - Fortran simulation of the earth's geodynamo
-   - Solving quantum wave equations with genetic algorithms
-- Worked as freelance web developer (ASP & front end)
-
-### Colne Community High School/College
-- A level Maths, Music, Music Practical, Physics
-- GCSE's: 11 A*-C including Maths, Science, English lit/lang
+**MPhys (Master of Physics and the Universe)**
+- Final projects: Fortran simulation of the Earth's geodynamo; solving quantum wave equations with genetic algorithms.
+- Freelance web developer (ASP & front-end systems).
 
 ## Personal
 I live in Bristol with my wife, two children, dog & ever growing instrument collection.
